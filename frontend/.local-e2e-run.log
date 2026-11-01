@@ -1,0 +1,35 @@
+Running all 39 verification suites...
+- Running verify-group1-browser.mjs... PASS (7.7s)
+- Running verify-dashboard-browser.mjs... PASS (2.4s)
+- Running verify-dashboard-widgets.mjs... PASS (3.7s)
+- Running verify-projects-browser.mjs... PASS (2.7s)
+- Running verify-projects-advanced.mjs... PASS (5.1s)
+- Running verify-my-tasks-browser.mjs... PASS (3.5s)
+- Running verify-my-tasks-roles.mjs... PASS (4.2s)
+- Running verify-clients-browser.mjs... PASS (4.9s)
+- Running verify-client-detail-browser.mjs... PASS (7.9s)
+- Running verify-team-browser.mjs... PASS (6.9s)
+- Running verify-team-roles.mjs... PASS (10.0s)
+- Running verify-portal-enabled-api.mjs... PASS (3.5s)
+- Running verify-notifications-browser.mjs... FAIL (30.7s)
+=== STARTING WORKSPACE/NOTIFICATIONS BROWSER VERIFICATION ===
+1. Logging in as existing owner...
+BROWSER LOG: [vite] connecting...
+BROWSER LOG: [vite] connected.
+BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+BROWSER LOG: Failed to load resource: the server responded with a status of 401 (Unauthorized)
+BROWSER LOG: Failed to load resource: the server responded with a status of 401 (Unauthorized)
+
+Test failed: page.waitForURL: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for navigation to "**/workspace/dashboard" until "load"
+============================================================
+    at run (/Users/mac/Downloads/Devworkspace-Complete-Project/frontend/scripts/dev/verify-notifications-browser.mjs:32:14) {
+  log: [],
+  name: 'TimeoutError'
+}
+
+
+========================================
+SUMMARY: 12/39 suites pass
+========================================

@@ -1,0 +1,7 @@
+{$DOMAIN} {
+	# Forward all traffic to the local edge proxy, which performs the
+	# application-layer routing and guards. Caddy keeps the original Host
+	# header, so the proxy, API and worker all see the same public origin.
+	# TLS is automatic (ACME HTTP-01 on port 80, HTTPS on port 443).
+	reverse_proxy 127.0.0.1:8443
+}
