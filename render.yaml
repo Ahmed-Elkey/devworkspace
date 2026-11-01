@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: devworkspace-api
+    runtime: node
+    plan: free
+    branch: main
+    rootDir: backend
+    buildCommand: pnpm install && pnpm build
+    startCommand: node apps/api/dist/main.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: devworkspace-db
+          property: connectionString
+      - key: REDIS_URL
+        value: rediss://default:gQAAAAAAArM_AAIgcDExZjk5YzQ0OWNmNTI0ZDNkOGQ4NzllMzczOWJlOTE2Zg@mutual-kingfish-176959.upstash.io:6379
+      - key: SMTP_URL
+        value: smtp://ahmed.mahmoud.elkey@gmail.com:yojkevmxtseowsbh@smtp.gmail.com:587
+      - key: SMTP_FROM
+        value: DevWorkspace <ahmed.mahmoud.elkey@gmail.com>
+      - key: APP_ORIGIN
+        value: https://frontend-gcsk1j6wr-dsdsdsasdfhasf-9201s-projects.vercel.app
+      - key: PORT
+        value: 10000
+
+  - type: worker
+    name: devworkspace-worker
+    runtime: node
+    plan: free
+    branch: main
+    rootDir: backend
+    buildCommand: pnpm install && pnpm build
+    startCommand: node apps/worker/dist/main.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: devworkspace-db
+          property: connectionString
+      - key: REDIS_URL
+        value: rediss://default:gQAAAAAAArM_AAIgcDExZjk5YzQ0OWNmNTI0ZDNkOGQ4NzllMzczOWJlOTE2Zg@mutual-kingfish-176959.upstash.io:6379
+      - key: PRODUCT_ENABLED
+        value: true
+      - key: EXPERIMENT_AUTH_ENABLED
+        value: false
+
+databases:
+  - name: devworkspace-db
+    plan: free
+    databaseName: devworkspace
+    user: devworkspace
