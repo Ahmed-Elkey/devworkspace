@@ -15,7 +15,12 @@ coverage/
 test-results/
 playwright-report/
 .playwright-cli/
+.playwright-mcp/
+.vercel/
 *.zip
+
+# --- Database exports and archives: contain live credentials, never commit ---
+backups/
 
 # --- Environment & secrets: NEVER commit these ---
 .env

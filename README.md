@@ -5,7 +5,7 @@ Welcome to the **DevWorkspace** full-stack SaaS codebase!
 This package contains everything needed to run, develop, test, and extend the complete application:
 - **Frontend** (`./frontend`): React 19, TypeScript, Vite MPA architecture, 36 responsive page templates and the Phase 10 design system.
 - **Backend** (`./backend`): Modular monolith with Express/NestJS, Better Auth identity, PostgreSQL multi-tenant RLS, Redis/BullMQ event workers, SeaweedFS private storage, and ClamAV sandboxing.
-- **Environment & Secrets Included**: All `.env.local`, `phase2-api.env`, `phase4-api.env`, and database credentials are fully pre-configured for local development.
+- **Local setup**: run `pnpm setup:local` inside `backend` to generate your own `.env.local`, TLS certificates and phase environment files. Secrets are generated per machine and are never committed to this repository.
 
 ---
 
