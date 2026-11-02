@@ -37,6 +37,16 @@ Measured against the live deployment (three separate waves):
   the application logs. That ceiling is Vercel's function cold-start and
   concurrency limit, not this codebase; raising it is a plan/billing decision.
 
+### How long a page takes
+
+Every read goes from the API function across the region to the database, so one
+authenticated request costs roughly half a second to several seconds. Measured on
+the live deployment, the five reads that fill the dashboard took 2.4s, 3.7s, 6.1s,
+6.7s and 7.3s; they are issued together, so the page is full at about the time of
+the slowest one rather than the sum of all five. Shortening that further means
+putting the database in the same region as the API, or paying for more database
+and function capacity — the frontend has no way to make a distant query faster.
+
 Two things make that number possible and are easy to undo by accident:
 
 * **Per-visitor abuse budget.** Every deployment terminates TLS in a proxy in
