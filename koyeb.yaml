@@ -4,16 +4,18 @@ services:
     dockerfile: backend/Dockerfile
     port: 3001
     env:
+      # Set these in the Koyeb dashboard / CLI instead of in this file.
+      # Rotate any previously exposed credentials before entering them.
       - key: DATABASE_URL
-        value: "postgres://devworkspace:YOUR_PASSWORD@YOUR_HOST:5432/devworkspace"
+        value: "postgres://SET_IN_KOYEB_DASHBOARD"
       - key: REDIS_URL
-        value: "rediss://default:gQAAAAAAArM_AAIgcDExZjk5YzQ0OWNmNTI0ZDNkOGQ4NzllMzczOWJlOTE2Zg@mutual-kingfish-176959.upstash.io:6379"
+        value: "rediss://SET_IN_KOYEB_DASHBOARD"
       - key: SMTP_URL
-        value: "smtp://ahmed.mahmoud.elkey@gmail.com:yojkevmxtseowsbh@smtp.gmail.com:587"
+        value: "smtp://SET_IN_KOYEB_DASHBOARD:SET_IN_KOYEB_DASHBOARD@smtp.gmail.com:587"
       - key: SMTP_FROM
-        value: "DevWorkspace <ahmed.mahmoud.elkey@gmail.com>"
+        value: "DevWorkspace <SET_IN_KOYEB_DASHBOARD>"
       - key: APP_ORIGIN
-        value: "https://frontend-pi-eight-ew4t31qvv2.vercel.app"
+        value: "https://SET-AFTER-FRONTEND-DEPLOY.vercel.app"
     github:
       repo: Ahmed-Elkey/devworkspace
       branch: main
