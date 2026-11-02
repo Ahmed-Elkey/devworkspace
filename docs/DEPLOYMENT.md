@@ -1,4 +1,40 @@
-# DevWorkspace Deployment — production on a free Oracle Cloud VPS
+# DevWorkspace Deployment
+
+## Current live deployment — Vercel (functions only)
+
+Both apps deploy from this repository through Vercel's GitHub integration: the
+`backend` project runs the API as a single serverless function, the `frontend`
+project serves the built Vite MPA and proxies `/api/*` to the API's production
+domain so cookies, CSRF and `SameSite` behave as one origin.
+
+Setup that the Vercel UI cannot infer from `vercel.json`:
+
+* each project's **Root Directory** must be `backend` / `frontend`;
+* install command is `pnpm install --frozen-lockfile --prod=false`, because
+  `NODE_ENV=production` otherwise drops the toolchain the build needs;
+* **Deployment Protection** must be set to preview-only, otherwise anonymous
+  visitors on the production host get a 302 to the Vercel login.
+
+A serverless function cannot hold a queue, a socket or a filesystem, so these
+features are unreachable on this route even when everything else works:
+
+| Feature | Why it is missing |
+|---|---|
+| File upload, assets, deliverables, review versions | the storage client only accepts the private loopback S3 endpoint (`packages/server/src/storage.ts`) |
+| Email (verification, reset, invitations) | verification is `requireEmailVerification`, and the sealed envelope is consumed by the worker |
+| Notifications and the project activity feed | both are projected by `materialize_notifications`, which runs in the tenant worker |
+| Live updates | `/socket.io` has no gateway; pages fall back to the 30-second catch-up poll |
+
+The worker also refuses any database that is not on `127.0.0.1`
+(`apps/worker/src/mail.ts`), so it cannot be pointed at the hosted database.
+Everything above works on the VPS route below, which runs the full stack.
+
+Self-service signup and password reset on Vercel will create a request that
+never completes; use a pre-verified account instead.
+
+---
+
+# Alternative: production on a free Oracle Cloud VPS
 
 **Goal:** deploy the whole project online, free and permanent, no paid domain,
 all current data transferred exactly, Mailpit replaced by a real mail provider

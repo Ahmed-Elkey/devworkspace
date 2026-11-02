@@ -66,6 +66,20 @@ You do not need to register a new account to test the system. A complete showcas
 
 *(You can also click the **Auto-fill** button on the sign-in card to instantly populate these credentials).*
 
+The same account also works on the hosted demo, which is what you can hand to
+other people:
+
+| Field | Value |
+|---|---|
+| **URL** | [https://frontend-dsdsdsasdfhasf-9201s-projects.vercel.app/login](https://frontend-dsdsdsasdfhasf-9201s-projects.vercel.app/login) |
+| **Email / password** | the same as above |
+
+On the hosted version, file upload, deliverable versions, reviews, email and
+the activity feed are unavailable — they need the background worker and private
+storage, which a serverless function cannot run. See
+[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the full list and the VPS route
+that supports everything.
+
 ---
 
 ## 🗺️ Application Architecture & All 36 Pages
