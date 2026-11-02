@@ -43,6 +43,13 @@ export function productConfig(env: NodeJS.ProcessEnv) {
       .string()
       .regex(/^https:\/\/[^\s/]+$/, 'APP_ORIGIN must be a https origin')
       .default('https://localhost:8443'),
+    APP_ALLOWED_ORIGINS: z.string().default(''),
+    // A serverless instance serves several requests at once from one process, so
+    // it needs a wider database pool than a long-running container where the same
+    // pool is shared by every request. Too narrow makes concurrent visitors wait
+    // for a connection and fail; the database's own connection ceiling decides
+    // how much headroom a deployment may open per instance.
+    PRODUCT_DB_POOL_MAX: z.coerce.number().int().min(1).max(50).default(6),
   });
   const result = shape.safeParse(env);
   if (!result.success)
@@ -55,18 +62,42 @@ export function productConfig(env: NodeJS.ProcessEnv) {
   // native infrastructure on 127.0.0.1. Protocol and restricted-role checks
   // (dw2_api / dw2_identity) always apply; default behavior is unchanged.
   const allowRemote = env.PRODUCT_ALLOW_REMOTE === 'true';
-  for (const [key, value] of Object.entries(result.data))
-    if (key.endsWith('_URL')) {
-      const u = new URL(value);
-      if (
-        u.username !== (key === 'PRODUCT_API_URL' ? 'dw2_api' : 'dw2_identity') ||
-        u.protocol !== 'postgresql:' ||
-        (!allowRemote && u.hostname !== '127.0.0.1') ||
-        u.pathname !== '/devworkspace_phase2'
-      )
-        throw new Error('Restricted product role required');
-    }
+  for (const key of ['PRODUCT_API_URL', 'PRODUCT_IDENTITY_URL'] as const) {
+    const u = new URL(result.data[key]);
+    if (
+      u.username !== (key === 'PRODUCT_API_URL' ? 'dw2_api' : 'dw2_identity') ||
+      u.protocol !== 'postgresql:' ||
+      (!allowRemote && u.hostname !== '127.0.0.1') ||
+      u.pathname !== '/devworkspace_phase2'
+    )
+      throw new Error('Restricted product role required');
+  }
   return result.data;
+}
+/**
+ * A deployment answers on more hostnames than the canonical APP_ORIGIN: Vercel
+ * gives every project a default domain and each push a preview URL, and the
+ * browser reports whichever one the visitor typed. Those requests are still
+ * guarded by the HMAC-bound CSRF token and a SameSite=Lax `__Host-` session
+ * cookie, which a foreign site can neither read nor send.
+ * Entries may be exact origins or a `https://*.suffix` wildcard.
+ */
+export function trustedOriginMatcher(appOrigin: string, allowed: string) {
+  const entries = [appOrigin, ...allowed.split(',')]
+    .map((value) => value.trim().replace(/\/$/, ''))
+    .filter(Boolean);
+  const wildcard = 'https://*.';
+  const exact = new Set(entries.filter((value) => !value.startsWith(wildcard)));
+  const suffixes = entries
+    .filter((value) => value.startsWith(wildcard))
+    .map((value) => value.slice(wildcard.length));
+  return (origin: string | undefined) => {
+    if (!origin) return false;
+    if (exact.has(origin)) return true;
+    if (!/^https:\/\/[a-z0-9.-]+$/i.test(origin)) return false;
+    const host = origin.slice('https://'.length);
+    return suffixes.some((suffix) => host.endsWith('.' + suffix));
+  };
 }
 export class ProductApplication {
   private denialBudget = { until: 0, count: 0 };
@@ -75,21 +106,25 @@ export class ProductApplication {
   readonly files;
   readonly media;
   readonly origin: string;
+  readonly isTrustedOrigin: (origin: string | undefined) => boolean;
   readonly config;
   readonly notifications;
   constructor(env: NodeJS.ProcessEnv = process.env) {
     this.config = productConfig(env);
     this.origin = this.config.APP_ORIGIN;
+    this.isTrustedOrigin = trustedOriginMatcher(this.origin, this.config.APP_ALLOWED_ORIGINS);
     this.identity = createProductIdentity(
       this.config.PRODUCT_IDENTITY_URL,
       this.config.BETTER_AUTH_SECRET,
       this.config.PRODUCT_MAIL_KEY,
       this.origin,
+      this.config.PRODUCT_DB_POOL_MAX,
     );
     this.organizations = new Organizations(
       this.config.PRODUCT_API_URL,
       this.config.PRODUCT_MAIL_KEY,
       this.origin,
+      this.config.PRODUCT_DB_POOL_MAX,
     );
     this.files =
       env.FILE_STORAGE_ACCESS_KEY && env.FILE_STORAGE_SECRET_KEY
@@ -191,7 +226,7 @@ export class ProductApplication {
     }
     if (!['GET', 'HEAD'].includes(method)) {
       if (
-        r.headers.origin !== this.origin ||
+        !this.isTrustedOrigin(r.headers.origin) ||
         !verifyCsrf(this.config.BETTER_AUTH_SECRET, cookie, r.headers['x-csrf-token'] ?? '')
       )
         throw new Problem(
@@ -214,7 +249,12 @@ export class ProductApplication {
       return Number(match[1]);
     };
     const limit = async (lane: string, identity = '') => {
-      for (const value of ['ip:' + r.ip, ...(identity ? ['identity:' + identity] : [])]) {
+      // Both budgets belong to one visitor: the per-address total, and a smaller
+      // one per identity behind that address. Keying the identity budget by the
+      // address as well keeps a shared account - the demo signs several people in
+      // through the same address every day - from letting one visitor's retries
+      // lock everybody else out of it.
+      for (const value of ['ip:' + r.ip, ...(identity ? [`identity:${identity}:${r.ip}`] : [])]) {
         const { rows } = await this.organizations.database.pool.query<{ allowed: boolean }>(
           'SELECT public.abuse($1,$2) AS allowed',
           [digest(lane + ':' + value), value.startsWith('ip:') ? 100 : 12],

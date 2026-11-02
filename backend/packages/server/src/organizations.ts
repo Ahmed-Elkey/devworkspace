@@ -16,8 +16,9 @@ export class Organizations {
     url: string,
     readonly mailKey: string,
     readonly origin: string,
+    poolMax = 6,
   ) {
-    this.database = new TenantDatabase(url);
+    this.database = new TenantDatabase(url, poolMax);
   }
   async principals(user: ActiveSession, cursor: string) {
     const { rows } = await this.database.pool.query<{

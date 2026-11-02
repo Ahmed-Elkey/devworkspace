@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { loadFoundationConfig } from '../../packages/server/dist/index.js';
+import { loadFoundationConfig, trustedOriginMatcher } from '../../packages/server/dist/index.js';
 import { violationsFor } from '../../scripts/check-boundaries.mjs';
 test('experiment cannot start without its database/secret or in production', () => {
   assert.throws(() => loadFoundationConfig({ EXPERIMENT_AUTH_ENABLED: 'true' }));
@@ -38,4 +38,21 @@ test('contracts are browser-safe and dynamic import bypass is rejected', () => {
     ).length,
     0,
   );
+});
+test('only the configured origins may post to the product api', () => {
+  const pinned = trustedOriginMatcher('https://app.example.test', '');
+  assert.ok(pinned('https://app.example.test'));
+  assert.ok(!pinned('https://other.example.test'));
+  assert.ok(!pinned(undefined));
+  const hosted = trustedOriginMatcher(
+    'https://api.example.test',
+    'https://app.example.test, https://*.vercel.app',
+  );
+  assert.ok(hosted('https://api.example.test'));
+  assert.ok(hosted('https://app.example.test'));
+  assert.ok(hosted('https://preview-42.vercel.app'));
+  assert.ok(hosted('https://eu.preview-42.vercel.app'));
+  assert.ok(!hosted('https://vercel.app'));
+  assert.ok(!hosted('https://vercel.app.evil.test'));
+  assert.ok(!hosted('http://preview-42.vercel.app'));
 });

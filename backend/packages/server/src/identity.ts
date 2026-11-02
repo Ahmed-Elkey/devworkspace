@@ -11,8 +11,9 @@ export function createProductIdentity(
   secret: string,
   mailKey: string,
   origin: string,
+  poolMax = 6,
 ) {
-  const database: IdentityDatabase = createIdentityDatabase(url);
+  const database: IdentityDatabase = createIdentityDatabase(url, poolMax);
   const mutationState = new AsyncLocalStorage<{ mailFailure: boolean }>();
   async function durable(work: () => Promise<void>) {
     try {

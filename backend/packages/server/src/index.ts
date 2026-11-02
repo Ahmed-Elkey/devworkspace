@@ -34,6 +34,7 @@ export type FoundationConfig = ReturnType<typeof loadFoundationConfig>;
 export {
   ProductApplication,
   productConfig,
+  trustedOriginMatcher,
   type ProductRequest,
   type ProductResponse,
 } from './product.js';

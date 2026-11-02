@@ -15,6 +15,43 @@ Setup that the Vercel UI cannot infer from `vercel.json`:
 * **Deployment Protection** must be set to preview-only, otherwise anonymous
   visitors on the production host get a 302 to the Vercel login.
 
+Environment the API project needs beyond the database URLs and signing secrets:
+
+| Variable | Value on Vercel | Why |
+|---|---|---|
+| `PRODUCT_ALLOW_REMOTE` | `true` | Without it the config layer rejects any database that is not on `127.0.0.1`, so a hosted database cannot be used at all. |
+| `APP_ORIGIN` | the API project domain | The origin the API considers its own; cookies and CSRF are bound to it. |
+| `APP_ALLOWED_ORIGINS` | `https://*.vercel.app` | Every visitor reaches the API through the frontend, whose preview and deployment hostnames are generated per push. Pinning one host makes sign-in fail with "Secure request check failed" on any other. Entries starting `https://*.` match a subdomain of that suffix only, so `vercel.app` itself and `vercel.app.attacker.test` stay refused. |
+| `PRODUCT_DB_POOL_MAX` | `20` | One serverless instance serves several requests from one process, so it needs a wider pool than a container. At the old default of 6 concurrent visitors queue for a connection and the function returns 503. |
+
+Signed-in visitors reach the API through the frontend rewrite, so the browser
+never leaves one origin; the API domain is only ever contacted server-side.
+
+### How many people at once
+
+Measured against the live deployment (three separate waves):
+
+* 21, 42 and 60 simultaneous sign-ins — all succeeded;
+* 60 simultaneous authenticated page loads — all succeeded;
+* 120 simultaneous page loads — 104 succeeded, 16 returned 504 with no error in
+  the application logs. That ceiling is Vercel's function cold-start and
+  concurrency limit, not this codebase; raising it is a plan/billing decision.
+
+Two things make that number possible and are easy to undo by accident:
+
+* **Per-visitor abuse budget.** Every deployment terminates TLS in a proxy in
+  front of the Node process, so `request.socket.remoteAddress` is always
+  `127.0.0.1` and the whole world shares one throttle bucket. The API now takes
+  the last `X-Forwarded-For` hop, which is the address the proxy actually
+  received the request from and not something a visitor can invent.
+* **Per-visitor identity budget.** The smaller sign-in lane is keyed by account
+  *and* address, because the demo account is shared: without the address in the
+  key, one visitor retrying a wrong password locks every other visitor out of
+  that account for a minute.
+
+Self-service signup and password reset on Vercel will create a request that
+never completes; use a pre-verified account instead.
+
 A serverless function cannot hold a queue, a socket or a filesystem, so these
 features are unreachable on this route even when everything else works:
 

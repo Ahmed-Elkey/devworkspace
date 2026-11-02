@@ -66,13 +66,37 @@ You do not need to register a new account to test the system. A complete showcas
 
 *(You can also click the **Auto-fill** button on the sign-in card to instantly populate these credentials).*
 
-The same account also works on the hosted demo, which is what you can hand to
-other people:
+## 🌐 Hosted demo — every role, ready to click
 
-| Field | Value |
-|---|---|
-| **URL** | [https://frontend-dsdsdsasdfhasf-9201s-projects.vercel.app/login](https://frontend-dsdsdsasdfhasf-9201s-projects.vercel.app/login) |
-| **Email / password** | the same as above |
+👉 **[https://frontend-dsdsdsasdfhasf-9201s-projects.vercel.app/login](https://frontend-dsdsdsasdfhasf-9201s-projects.vercel.app/login)**
+
+Open the page, press the role you want, then **Sign in**. The chip fills the
+form; you never have to type an address.
+
+| Role | Email | Password |
+|---|---|---|
+| Owner | `demo@agency.com` | `Password123!` |
+| Admin | `admin@agency.com` | `Password123!` |
+| Project manager | `pm@agency.com` | `Password123!` |
+| Contributor | `designer@agency.com` | `Password123!` |
+| Viewer | `viewer@agency.com` | `Password123!` |
+| Client approver | `sarah.jenkins@acmeglobal.com` | `Password123!` |
+| Client reviewer | `marc.wong@acmeglobal.com` | `Password123!` |
+
+All seven belong to the same organization and share the **Storefront Relaunch**
+project, so each role sees a genuinely different product: the Contributor has
+three assigned tasks, the Project manager owns the board, the Viewer is refused
+every change, and the two client accounts land in the client portal rather than
+the workspace. They were created through the real invitation flow — the path a
+paying customer takes — not by inserting rows.
+
+Any number of people can be signed in at once, on the same account or on
+different ones. Measured against the live deployment, 60 simultaneous sign-ins
+and 60 simultaneous authenticated page loads all succeed; past roughly 120
+concurrent requests Vercel's own function limit begins returning 504s. The
+settings behind those numbers (`APP_ALLOWED_ORIGINS`, `PRODUCT_DB_POOL_MAX`,
+and the per-visitor abuse budget) are documented in
+[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 On the hosted version, file upload, deliverable versions, reviews, email and
 the activity feed are unavailable — they need the background worker and private

@@ -24,6 +24,17 @@ import { createExperimentAuth, type ExperimentAuth } from './experiment/auth.js'
 import { ExperimentGateway } from './experiment/gateway.js';
 import { CommunicationsGateway } from './communications-gateway.js';
 import { randomUUID } from 'node:crypto';
+// Every deployment this API runs in terminates TLS in a proxy in front of the
+// process (the Vercel edge, the local compose proxy, Caddy in production), so
+// the socket belongs to that proxy and every visitor would share one abuse
+// bucket. Each proxy appends the address it actually received the request from,
+// making the last X-Forwarded-For hop the visitor rather than a value a visitor
+// can invent.
+function clientAddress(request: Request) {
+  const forwarded = request.headers['x-forwarded-for'];
+  const hops = (Array.isArray(forwarded) ? forwarded[0] : forwarded)?.split(',');
+  return hops?.[hops.length - 1]?.trim() || request.socket.remoteAddress || 'unknown';
+}
 interface Context {
   config: FoundationConfig;
   database: ExperimentDatabase | null;
@@ -53,7 +64,7 @@ class ProductController {
           Array.isArray(value) ? value[0] : value,
         ]),
       ),
-      ip: request.socket.remoteAddress ?? 'unknown',
+      ip: clientAddress(request),
     });
     if (result.cookies?.length) response.setHeader('Set-Cookie', result.cookies);
     for (const [key, value] of Object.entries(result.headers ?? {})) response.setHeader(key, value);

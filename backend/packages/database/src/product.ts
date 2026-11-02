@@ -16,8 +16,8 @@ function dbConfig(url: string, max: number): PoolConfig {
         : { rejectUnauthorized: false };
   return { connectionString: url, max, options: '-c timezone=UTC', ...(ssl ? { ssl } : {}) };
 }
-export function createIdentityDatabase(url: string): PrismaClient {
-  return new PrismaClient({ adapter: new PrismaPg({ ...dbConfig(url, 6) }) });
+export function createIdentityDatabase(url: string, max = 6): PrismaClient {
+  return new PrismaClient({ adapter: new PrismaPg({ ...dbConfig(url, max) }) });
 }
 export function createTenantPrisma(url: string, max = 6): PrismaClient {
   return new PrismaClient({ adapter: new PrismaPg({ ...dbConfig(url, max) }) });
