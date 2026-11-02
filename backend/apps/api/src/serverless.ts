@@ -1,4 +1,5 @@
 import { createApi } from './app.js';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 
 // Serverless entry for platforms that invoke a Node (req, res) handler
 // (e.g. Vercel Functions). Reuses the already-initialized Nest application
@@ -8,31 +9,25 @@ import { createApi } from './app.js';
 // inherits the exact same behavior as the long-running server.
 
 type NestApp = Awaited<ReturnType<typeof createApi>>['app'];
+type NodeHandler = (req: IncomingMessage, res: ServerResponse) => void;
 
 let appPromise: Promise<NestApp> | null = null;
-let expressHandler: ((req: unknown, res: unknown) => unknown) | null = null;
+let expressHandler: NodeHandler | null = null;
 
-function toNodeHandler(app: NestApp): (req: never, res: never) => unknown {
-  const instance = app.getHttpAdapter().getInstance() as unknown as (
-    req: never,
-    res: never,
-  ) => unknown;
-  return instance;
-}
-
-export default async function handler(serverlessReq: any, serverlessRes: any) {
+export default async function handler(
+  serverlessReq: IncomingMessage,
+  serverlessRes: ServerResponse,
+) {
   if (!appPromise) appPromise = createApi().then((bag) => bag.app);
-  const app = await appPromise;
-  if (!expressHandler) expressHandler = toNodeHandler(app) as never;
+  const handle: NodeHandler =
+    expressHandler ?? ((await appPromise).getHttpAdapter().getInstance() as unknown as NodeHandler);
+  expressHandler = handle;
 
   // Express does not invoke next() for handled routes; it ends the response
   // instead. Resolve on response close so the function terminates exactly when
   // the response is finalized (success, error, or client disconnect).
   await new Promise<void>((resolve) => {
     serverlessRes.on('close', resolve);
-    (expressHandler as unknown as (req: any, res: any) => void)(
-      serverlessReq,
-      serverlessRes,
-    );
+    handle(serverlessReq, serverlessRes);
   });
 }

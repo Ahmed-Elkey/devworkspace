@@ -15,8 +15,6 @@ import crypto from 'node:crypto';
  * credentials to a relay that will not start TLS.
  */
 
-type Mail = { to: string; subject: string; text: string };
-
 function readSession(passed?: number) {
   const env = process.env.SMTP_URL?.trim();
   if (!env) return { host: '127.0.0.1', port: passed ?? 1025, user: '', pass: '', implicitTls: false };
