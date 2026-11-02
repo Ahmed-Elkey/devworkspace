@@ -1,0 +1,2322 @@
+{
+ "email": "pm@agency.com",
+ "capturedFrom": "https://frontend-pi-eight-ew4t31qvv2.vercel.app",
+ "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+ "recordings": {
+  "GET /me": {
+   "status": 200,
+   "body": {
+    "id": "lhfm3Pn6ZguYY4RSIMLCyKybIHx3cCKK",
+    "name": "Omar Haddad",
+    "email": "pm@agency.com",
+    "revision": 1
+   }
+  },
+  "GET /me/principals": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "f00e40a1-f297-4ecc-8a7c-2d3f868ef45d",
+      "organizationId": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+      "name": "Apex Digital Studio",
+      "role": "MEMBER",
+      "capacity": "INTERNAL"
+     }
+    ],
+    "nextCursor": null
+   }
+  },
+  "GET /me/client-principals": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "nextCursor": null
+   }
+  },
+  "GET /me/image": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Route unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "6ace0f8a-1444-4cb3-9337-42760df84ca4"
+   }
+  },
+  "GET /me/notification-preferences": {
+   "status": 200,
+   "body": {
+    "reviews": true,
+    "revision": 1,
+    "assignments": true,
+    "client_updates": true,
+    "discussions_documents": true
+   }
+  },
+  "GET /me/sessions": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "9EAk2UimSomgadSVGXvW5NJlSlUAEEX5",
+      "createdAt": "2026-11-02T19:24:30.128Z",
+      "expiresAt": "2026-11-03T03:24:30.128Z",
+      "current": false
+     },
+     {
+      "id": "gj4mSjGbltm6X9fohNUoWooA4ZkH2mMK",
+      "createdAt": "2026-11-02T19:36:39.168Z",
+      "expiresAt": "2026-11-03T03:36:39.168Z",
+      "current": true
+     }
+    ],
+    "nextCursor": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5": {
+   "status": 200,
+   "body": {
+    "id": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+    "name": "Apex Digital Studio",
+    "description": "Multi-tenant agency workspace demo: delivery, collaboration and client review.",
+    "timezone": "Africa/Cairo",
+    "revision": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/team": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "Organization administrator required",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "7912afb6-c30f-4c4f-83b9-3ea1e8149089"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/team?limit=100": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "Organization administrator required",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "8dacdc0a-7f1b-42ba-87b6-601681f6e0d7"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/invitations": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "Organization administrator required",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "6859c58c-df52-488a-9d76-315bc53691df"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/invitations?limit=100": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "Organization administrator required",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "699e56a7-2bb0-4e62-93e1-0081e48880fc"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/logo": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "Organization administrator required",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "3d2c5666-53db-4a10-82f3-a92c1c1abf74"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "revision": 1,
+      "name": "Northwind Coffee Co",
+      "description": "",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T14:31:44.066Z",
+      "updated_at": "2026-11-02T14:31:44.066Z"
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "revision": 1,
+      "name": "Northwind Coffee Co",
+      "description": "",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T14:31:44.066Z",
+      "updated_at": "2026-11-02T14:31:44.066Z"
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=100&page=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "revision": 1,
+      "name": "Northwind Coffee Co",
+      "description": "",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T14:31:44.066Z",
+      "updated_at": "2026-11-02T14:31:44.066Z"
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "revision": 1,
+      "name": "Northwind Coffee Co",
+      "description": "",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T14:31:44.066Z",
+      "updated_at": "2026-11-02T14:31:44.066Z"
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "revision": 1,
+      "client_id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE",
+      "due_at": "2026-12-17T14:31:45.248Z",
+      "portal_enabled": true,
+      "created_at": "2026-11-02T14:31:45.843Z",
+      "updated_at": "2026-11-02T14:31:45.843Z",
+      "summary": {
+       "total": 6,
+       "done": 2,
+       "overdue": 0,
+       "progress": 0.3333333333333333
+      }
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "revision": 1,
+      "client_id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE",
+      "due_at": "2026-12-17T14:31:45.248Z",
+      "portal_enabled": true,
+      "created_at": "2026-11-02T14:31:45.843Z",
+      "updated_at": "2026-11-02T14:31:45.843Z",
+      "summary": {
+       "total": 6,
+       "done": 2,
+       "overdue": 0,
+       "progress": 0.3333333333333333
+      }
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=100&page=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "revision": 1,
+      "client_id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE",
+      "due_at": "2026-12-17T14:31:45.248Z",
+      "portal_enabled": true,
+      "created_at": "2026-11-02T14:31:45.843Z",
+      "updated_at": "2026-11-02T14:31:45.843Z",
+      "summary": {
+       "total": 6,
+       "done": 2,
+       "overdue": 0,
+       "progress": 0.3333333333333333
+      }
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "revision": 1,
+      "client_id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE",
+      "due_at": "2026-12-17T14:31:45.248Z",
+      "portal_enabled": true,
+      "created_at": "2026-11-02T14:31:45.843Z",
+      "updated_at": "2026-11-02T14:31:45.843Z",
+      "summary": {
+       "total": 6,
+       "done": 2,
+       "overdue": 0,
+       "progress": 0.3333333333333333
+      }
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/dashboard?limit=10": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "revision": 1,
+      "client_id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE",
+      "due_at": "2026-12-17T14:31:45.248Z",
+      "portal_enabled": true,
+      "created_at": "2026-11-02T14:31:45.843Z",
+      "updated_at": "2026-11-02T14:31:45.843Z",
+      "summary": {
+       "total": 6,
+       "done": 2,
+       "overdue": 0,
+       "progress": 0.3333333333333333
+      }
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 10
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks?limit=5": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 5
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=8": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 8
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=100&page=1": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=5": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 5
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews?status=OPEN&limit=5": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 5
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/documents": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "cbe25110-e316-4c94-8177-ec810849eacc",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "title": "Launch runbook",
+      "content": {
+       "blocks": [
+        {
+         "type": "heading",
+         "level": 2,
+         "spans": [
+          {
+           "text": "Launch runbook"
+          }
+         ]
+        },
+        {
+         "type": "paragraph",
+         "spans": [
+          {
+           "text": "Pre-launch checks: "
+          },
+          {
+           "bold": true,
+           "text": "catalogue sync, payment keys, tax rules, transactional email, redirects."
+          }
+         ]
+        },
+        {
+         "type": "bulletList",
+         "items": [
+          [
+           {
+            "text": "Confirm the catalogue feed has every SKU priced."
+           }
+          ],
+          [
+           {
+            "text": "Run a live subscription purchase on staging."
+           }
+          ],
+          [
+           {
+            "text": "Verify redirect rules for the old product URLs."
+           }
+          ]
+         ]
+        },
+        {
+         "type": "paragraph",
+         "spans": [
+          {
+           "text": "Owner: Apex delivery lead. Sign-off: Northwind approver."
+          }
+         ]
+        }
+       ],
+       "version": 1
+      },
+      "status": "ACTIVE",
+      "revision": 1,
+      "created_at": "2026-11-02T14:44:23.495Z",
+      "updated_at": "2026-11-02T14:44:23.495Z"
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 25,
+    "manager": false,
+    "canWrite": false,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/documents?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "cbe25110-e316-4c94-8177-ec810849eacc",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "title": "Launch runbook",
+      "content": {
+       "blocks": [
+        {
+         "type": "heading",
+         "level": 2,
+         "spans": [
+          {
+           "text": "Launch runbook"
+          }
+         ]
+        },
+        {
+         "type": "paragraph",
+         "spans": [
+          {
+           "text": "Pre-launch checks: "
+          },
+          {
+           "bold": true,
+           "text": "catalogue sync, payment keys, tax rules, transactional email, redirects."
+          }
+         ]
+        },
+        {
+         "type": "bulletList",
+         "items": [
+          [
+           {
+            "text": "Confirm the catalogue feed has every SKU priced."
+           }
+          ],
+          [
+           {
+            "text": "Run a live subscription purchase on staging."
+           }
+          ],
+          [
+           {
+            "text": "Verify redirect rules for the old product URLs."
+           }
+          ]
+         ]
+        },
+        {
+         "type": "paragraph",
+         "spans": [
+          {
+           "text": "Owner: Apex delivery lead. Sign-off: Northwind approver."
+          }
+         ]
+        }
+       ],
+       "version": 1
+      },
+      "status": "ACTIVE",
+      "revision": 1,
+      "created_at": "2026-11-02T14:44:23.495Z",
+      "updated_at": "2026-11-02T14:44:23.495Z"
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 100,
+    "manager": false,
+    "canWrite": false,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/audit?limit=100": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "This action requires project management permission",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "0411173e-417b-4a98-bc48-89b0783eb78d"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reports": {
+   "status": 200,
+   "body": {
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "tasks": 6,
+      "done": 2,
+      "overdue": 0,
+      "progress": 0.3333333333333333,
+      "approved_versions": 0,
+      "decisions": 0,
+      "turnaround_seconds": null
+     }
+    ],
+    "totals": {
+     "tasks": 6,
+     "done": 2,
+     "overdue": 0,
+     "progress": 0.3333333333333333,
+     "approved_versions": 0,
+     "decisions": 0,
+     "turnaround_seconds": null
+    },
+    "from": null,
+    "to": null,
+    "definitions": "Tasks/progress/overdue are live state. Progress = DONE / noncancelled; no tasks = null. Overdue excludes DONE/CANCELLED. Approval counts identify distinct exact versions. Decision count/mean turnaround use APPROVED/CHANGES_REQUESTED terminal cycles closed in [from,to); cancelled/superseded excluded. UTC instants."
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects?limit=50": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "3d55509c-a7e4-40ce-a0c5-43223c85f306"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects?limit=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "ce6349b9-b5cf-4278-bf09-c1ad88fa3805"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/notifications?limit=8": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "21c8668b-942e-450f-81bf-7520d99a7dff"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/notifications?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "cf47110f-109e-43da-b6ab-1b34481d950b"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/reviews?status=OPEN&limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "d82c49ba-d499-433e-84c6-0c24fe2006c0"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/reviews?status=OPEN&limit=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "1558ee0a-f8d0-43b4-a1b1-4a69ff55959c"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients/2c797938-44ea-4333-bd9e-5be38fb3587e": {
+   "status": 200,
+   "body": {
+    "id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+    "revision": 1,
+    "name": "Northwind Coffee Co",
+    "description": "",
+    "status": "ACTIVE",
+    "created_at": "2026-11-02T14:31:44.066Z",
+    "updated_at": "2026-11-02T14:31:44.066Z"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients/2c797938-44ea-4333-bd9e-5be38fb3587e/contacts": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "df945808-53da-4033-9844-bfcb158de089",
+      "revision": 2,
+      "name": "Sarah Jenkins",
+      "email": "sarah.jenkins@acmeglobal.com",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T16:44:08.359Z",
+      "updated_at": "2026-11-02T17:02:04.358Z"
+     },
+     {
+      "id": "b567592f-2bef-4468-8edb-620116c40b2d",
+      "revision": 2,
+      "name": "Marc Wong",
+      "email": "marc.wong@acmeglobal.com",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T16:45:49.436Z",
+      "updated_at": "2026-11-02T17:02:24.358Z"
+     }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients/2c797938-44ea-4333-bd9e-5be38fb3587e/contacts?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "df945808-53da-4033-9844-bfcb158de089",
+      "revision": 2,
+      "name": "Sarah Jenkins",
+      "email": "sarah.jenkins@acmeglobal.com",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T16:44:08.359Z",
+      "updated_at": "2026-11-02T17:02:04.358Z"
+     },
+     {
+      "id": "b567592f-2bef-4468-8edb-620116c40b2d",
+      "revision": 2,
+      "name": "Marc Wong",
+      "email": "marc.wong@acmeglobal.com",
+      "status": "ACTIVE",
+      "created_at": "2026-11-02T16:45:49.436Z",
+      "updated_at": "2026-11-02T17:02:24.358Z"
+     }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients/2c797938-44ea-4333-bd9e-5be38fb3587e/invitations?limit=100": {
+   "status": 403,
+   "body": {
+    "type": "urn:devworkspace:problem:FORBIDDEN",
+    "title": "Organization administrator required",
+    "status": 403,
+    "code": "FORBIDDEN",
+    "requestId": "5c918b38-3c69-4373-822d-0352c828e130"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6": {
+   "status": 200,
+   "body": {
+    "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "revision": 1,
+    "client_id": "2c797938-44ea-4333-bd9e-5be38fb3587e",
+    "name": "Storefront Relaunch",
+    "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+    "status": "ACTIVE",
+    "due_at": "2026-12-17T14:31:45.248Z",
+    "portal_enabled": true,
+    "created_at": "2026-11-02T14:31:45.843Z",
+    "updated_at": "2026-11-02T14:31:45.843Z",
+    "summary": {
+     "total": 6,
+     "done": 2,
+     "overdue": 0,
+     "progress": 0.3333333333333333
+    }
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/members": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "revision": 1,
+      "membership_id": "7c5ee2f2-4c96-4ef0-9608-1aca5dc12e4d",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "name": "Demo Showcase",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:33:33.278Z",
+      "updated_at": "2026-11-02T14:33:33.278Z"
+     },
+     {
+      "id": "fd00ec3d-9d85-4ea5-84d2-c5fea423835e",
+      "revision": 1,
+      "membership_id": "f00e40a1-f297-4ecc-8a7c-2d3f868ef45d",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "name": "Omar Haddad",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T17:00:30.453Z",
+      "updated_at": "2026-11-02T17:00:30.453Z"
+     },
+     {
+      "id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "revision": 1,
+      "membership_id": "5d59f00a-7765-4fc1-8c12-8298d429df11",
+      "role": "CONTRIBUTOR",
+      "status": "ACTIVE",
+      "name": "Layla Samir",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T17:01:16.287Z",
+      "updated_at": "2026-11-02T17:01:16.287Z"
+     },
+     {
+      "id": "0daaefc4-3c71-46ec-b45e-003bd62b5145",
+      "revision": 1,
+      "membership_id": "4ce5b26d-99eb-4778-ad20-455f2e5375b1",
+      "role": "VIEWER",
+      "status": "ACTIVE",
+      "name": "Karim Aziz",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T17:01:44.446Z",
+      "updated_at": "2026-11-02T17:01:44.446Z"
+     }
+    ],
+    "total": 4,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/members?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "revision": 1,
+      "membership_id": "7c5ee2f2-4c96-4ef0-9608-1aca5dc12e4d",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "name": "Demo Showcase",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:33:33.278Z",
+      "updated_at": "2026-11-02T14:33:33.278Z"
+     },
+     {
+      "id": "fd00ec3d-9d85-4ea5-84d2-c5fea423835e",
+      "revision": 1,
+      "membership_id": "f00e40a1-f297-4ecc-8a7c-2d3f868ef45d",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "name": "Omar Haddad",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T17:00:30.453Z",
+      "updated_at": "2026-11-02T17:00:30.453Z"
+     },
+     {
+      "id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "revision": 1,
+      "membership_id": "5d59f00a-7765-4fc1-8c12-8298d429df11",
+      "role": "CONTRIBUTOR",
+      "status": "ACTIVE",
+      "name": "Layla Samir",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T17:01:16.287Z",
+      "updated_at": "2026-11-02T17:01:16.287Z"
+     },
+     {
+      "id": "0daaefc4-3c71-46ec-b45e-003bd62b5145",
+      "revision": 1,
+      "membership_id": "4ce5b26d-99eb-4778-ad20-455f2e5375b1",
+      "role": "VIEWER",
+      "status": "ACTIVE",
+      "name": "Karim Aziz",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T17:01:44.446Z",
+      "updated_at": "2026-11-02T17:01:44.446Z"
+     }
+    ],
+    "total": 4,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/milestones": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "revision": 1,
+      "title": "Discovery and scope",
+      "due_at": "2026-10-27T14:31:46.997Z",
+      "position": 0,
+      "status": "COMPLETED",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:47.459Z",
+      "updated_at": "2026-11-02T14:31:47.459Z",
+      "summary": {
+       "total": 2,
+       "done": 2,
+       "overdue": 0,
+       "progress": 1
+      }
+     },
+     {
+      "id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "revision": 1,
+      "title": "Design system",
+      "due_at": "2026-11-14T14:31:48.723Z",
+      "position": 1,
+      "status": "OPEN",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:49.181Z",
+      "updated_at": "2026-11-02T14:31:49.181Z",
+      "summary": {
+       "total": 2,
+       "done": 0,
+       "overdue": 0,
+       "progress": 0
+      }
+     },
+     {
+      "id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "revision": 1,
+      "title": "Build and launch",
+      "due_at": "2026-12-12T14:31:50.458Z",
+      "position": 2,
+      "status": "OPEN",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:50.927Z",
+      "updated_at": "2026-11-02T14:31:50.927Z",
+      "summary": {
+       "total": 2,
+       "done": 0,
+       "overdue": 0,
+       "progress": 0
+      }
+     }
+    ],
+    "total": 3,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/milestones?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "revision": 1,
+      "title": "Discovery and scope",
+      "due_at": "2026-10-27T14:31:46.997Z",
+      "position": 0,
+      "status": "COMPLETED",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:47.459Z",
+      "updated_at": "2026-11-02T14:31:47.459Z",
+      "summary": {
+       "total": 2,
+       "done": 2,
+       "overdue": 0,
+       "progress": 1
+      }
+     },
+     {
+      "id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "revision": 1,
+      "title": "Design system",
+      "due_at": "2026-11-14T14:31:48.723Z",
+      "position": 1,
+      "status": "OPEN",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:49.181Z",
+      "updated_at": "2026-11-02T14:31:49.181Z",
+      "summary": {
+       "total": 2,
+       "done": 0,
+       "overdue": 0,
+       "progress": 0
+      }
+     },
+     {
+      "id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "revision": 1,
+      "title": "Build and launch",
+      "due_at": "2026-12-12T14:31:50.458Z",
+      "position": 2,
+      "status": "OPEN",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:50.927Z",
+      "updated_at": "2026-11-02T14:31:50.927Z",
+      "summary": {
+       "total": 2,
+       "done": 0,
+       "overdue": 0,
+       "progress": 0
+      }
+     }
+    ],
+    "total": 3,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/milestones?status=OPEN&limit=10": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "revision": 1,
+      "title": "Design system",
+      "due_at": "2026-11-14T14:31:48.723Z",
+      "position": 1,
+      "status": "OPEN",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:49.181Z",
+      "updated_at": "2026-11-02T14:31:49.181Z",
+      "summary": {
+       "total": 2,
+       "done": 0,
+       "overdue": 0,
+       "progress": 0
+      }
+     },
+     {
+      "id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "revision": 1,
+      "title": "Build and launch",
+      "due_at": "2026-12-12T14:31:50.458Z",
+      "position": 2,
+      "status": "OPEN",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:31:50.927Z",
+      "updated_at": "2026-11-02T14:31:50.927Z",
+      "summary": {
+       "total": 2,
+       "done": 0,
+       "overdue": 0,
+       "progress": 0
+      }
+     }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 10
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "0c0af1e4-fd20-4d37-aa49-f6677be1d571",
+      "revision": 1,
+      "title": "Finalise delivery schedule",
+      "description": "Confirm milestone dates and approval owners with Northwind.",
+      "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "HIGH",
+      "status": "DONE",
+      "due_at": "2026-10-27T14:35:06.161Z",
+      "position": 0,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:06.624Z",
+      "updated_at": "2026-11-02T14:35:06.624Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "de27fb9a-81b3-44c9-ac7b-6413ee542e55",
+      "revision": 1,
+      "title": "Content inventory",
+      "description": "Collect product copy, photography and pricing from the client.",
+      "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "NORMAL",
+      "status": "DONE",
+      "due_at": "2026-10-30T14:35:14.184Z",
+      "position": 1,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:14.661Z",
+      "updated_at": "2026-11-02T14:35:14.661Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "bf2d6ee8-b469-4478-84d4-4aabb126f200",
+      "revision": 2,
+      "title": "Design tokens and type scale",
+      "description": "Establish the palette, spacing scale and type ramp for the storefront.",
+      "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "priority": "HIGH",
+      "status": "IN_PROGRESS",
+      "due_at": "2026-11-06T14:35:18.174Z",
+      "position": 2,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:18.643Z",
+      "updated_at": "2026-11-02T17:37:21.943Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "c36939ec-5095-4e96-9b58-17614807aa60",
+      "revision": 2,
+      "title": "Checkout flow mockups",
+      "description": "Design the cart, subscription and confirmation screens.",
+      "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "priority": "URGENT",
+      "status": "TODO",
+      "due_at": "2026-11-11T14:35:27.775Z",
+      "position": 3,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:28.238Z",
+      "updated_at": "2026-11-02T17:37:24.468Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "e7582443-709b-4276-9b7a-78f0fc8343d2",
+      "revision": 2,
+      "title": "Storefront build",
+      "description": "Implement the approved design and connect the catalogue feed.",
+      "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "priority": "NORMAL",
+      "status": "BLOCKED",
+      "due_at": "2026-11-28T14:35:31.715Z",
+      "position": 4,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:32.183Z",
+      "updated_at": "2026-11-02T17:37:26.607Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "3ec80bcc-72f2-4604-9dc6-935808b37082",
+      "revision": 1,
+      "title": "Launch checklist and handover",
+      "description": "Run the pre-launch checks and hand the admin training notes to the client.",
+      "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "LOW",
+      "status": "TODO",
+      "due_at": "2026-12-12T14:35:35.744Z",
+      "position": 5,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:36.206Z",
+      "updated_at": "2026-11-02T14:35:36.206Z",
+      "source_feedback_thread_id": null
+     }
+    ],
+    "total": 6,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "0c0af1e4-fd20-4d37-aa49-f6677be1d571",
+      "revision": 1,
+      "title": "Finalise delivery schedule",
+      "description": "Confirm milestone dates and approval owners with Northwind.",
+      "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "HIGH",
+      "status": "DONE",
+      "due_at": "2026-10-27T14:35:06.161Z",
+      "position": 0,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:06.624Z",
+      "updated_at": "2026-11-02T14:35:06.624Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "de27fb9a-81b3-44c9-ac7b-6413ee542e55",
+      "revision": 1,
+      "title": "Content inventory",
+      "description": "Collect product copy, photography and pricing from the client.",
+      "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "NORMAL",
+      "status": "DONE",
+      "due_at": "2026-10-30T14:35:14.184Z",
+      "position": 1,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:14.661Z",
+      "updated_at": "2026-11-02T14:35:14.661Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "bf2d6ee8-b469-4478-84d4-4aabb126f200",
+      "revision": 2,
+      "title": "Design tokens and type scale",
+      "description": "Establish the palette, spacing scale and type ramp for the storefront.",
+      "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "priority": "HIGH",
+      "status": "IN_PROGRESS",
+      "due_at": "2026-11-06T14:35:18.174Z",
+      "position": 2,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:18.643Z",
+      "updated_at": "2026-11-02T17:37:21.943Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "c36939ec-5095-4e96-9b58-17614807aa60",
+      "revision": 2,
+      "title": "Checkout flow mockups",
+      "description": "Design the cart, subscription and confirmation screens.",
+      "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "priority": "URGENT",
+      "status": "TODO",
+      "due_at": "2026-11-11T14:35:27.775Z",
+      "position": 3,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:28.238Z",
+      "updated_at": "2026-11-02T17:37:24.468Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "e7582443-709b-4276-9b7a-78f0fc8343d2",
+      "revision": 2,
+      "title": "Storefront build",
+      "description": "Implement the approved design and connect the catalogue feed.",
+      "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+      "priority": "NORMAL",
+      "status": "BLOCKED",
+      "due_at": "2026-11-28T14:35:31.715Z",
+      "position": 4,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:32.183Z",
+      "updated_at": "2026-11-02T17:37:26.607Z",
+      "source_feedback_thread_id": null
+     },
+     {
+      "id": "3ec80bcc-72f2-4604-9dc6-935808b37082",
+      "revision": 1,
+      "title": "Launch checklist and handover",
+      "description": "Run the pre-launch checks and hand the admin training notes to the client.",
+      "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "LOW",
+      "status": "TODO",
+      "due_at": "2026-12-12T14:35:35.744Z",
+      "position": 5,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:36.206Z",
+      "updated_at": "2026-11-02T14:35:36.206Z",
+      "source_feedback_thread_id": null
+     }
+    ],
+    "total": 6,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks?limit=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "0c0af1e4-fd20-4d37-aa49-f6677be1d571",
+      "revision": 1,
+      "title": "Finalise delivery schedule",
+      "description": "Confirm milestone dates and approval owners with Northwind.",
+      "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+      "priority": "HIGH",
+      "status": "DONE",
+      "due_at": "2026-10-27T14:35:06.161Z",
+      "position": 0,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:06.624Z",
+      "updated_at": "2026-11-02T14:35:06.624Z",
+      "source_feedback_thread_id": null
+     }
+    ],
+    "total": 6,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/deliverables": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "b948569b-7236-4acf-953c-7afebb5d20bf"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/deliverables?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "1c8ef4da-4bb4-44b2-a849-aa91bf43ebc3"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/versions": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 25,
+    "manager": true
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/versions?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 100,
+    "manager": true
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/discussions": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "1de77851-9f98-48d4-aa08-4d28275032b2",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "title": "Approval route for the relaunch",
+      "body": "Northwind asked that Rana reviews every customer-facing screen before we build it. Milestone 2 gates on that approval.",
+      "author_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "status": "ACTIVE",
+      "revision": 1,
+      "created_at": "2026-11-02T14:42:24.413Z"
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 25,
+    "manager": true,
+    "canWrite": true,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/discussions?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "1de77851-9f98-48d4-aa08-4d28275032b2",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "title": "Approval route for the relaunch",
+      "body": "Northwind asked that Rana reviews every customer-facing screen before we build it. Milestone 2 gates on that approval.",
+      "author_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "status": "ACTIVE",
+      "revision": 1,
+      "created_at": "2026-11-02T14:42:24.413Z"
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 100,
+    "manager": true,
+    "canWrite": true,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/folders": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "630b0d78-4cae-475e-9801-a0c4795475bc"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/folders?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "077811f6-3678-4ba7-ba94-2d2f18f65e8e"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/grants": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "82bac966-6b84-4ca4-8acc-bfc484299d67",
+      "revision": 2,
+      "contact_id": "df945808-53da-4033-9844-bfcb158de089",
+      "role": "APPROVER",
+      "status": "ACTIVE",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T16:44:10.051Z",
+      "updated_at": "2026-11-02T17:02:04.358Z"
+     },
+     {
+      "id": "c2814a0d-c868-4262-afc1-47564c371101",
+      "revision": 2,
+      "contact_id": "b567592f-2bef-4468-8edb-620116c40b2d",
+      "role": "REVIEWER",
+      "status": "ACTIVE",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T16:45:51.181Z",
+      "updated_at": "2026-11-02T17:02:24.358Z"
+     }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/grants?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "82bac966-6b84-4ca4-8acc-bfc484299d67",
+      "revision": 2,
+      "contact_id": "df945808-53da-4033-9844-bfcb158de089",
+      "role": "APPROVER",
+      "status": "ACTIVE",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T16:44:10.051Z",
+      "updated_at": "2026-11-02T17:02:04.358Z"
+     },
+     {
+      "id": "c2814a0d-c868-4262-afc1-47564c371101",
+      "revision": 2,
+      "contact_id": "b567592f-2bef-4468-8edb-620116c40b2d",
+      "role": "REVIEWER",
+      "status": "ACTIVE",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T16:45:51.181Z",
+      "updated_at": "2026-11-02T17:02:24.358Z"
+     }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/activity?limit=5": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "nextCursor": null,
+    "limit": 5,
+    "manager": true,
+    "canWrite": true,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/activity?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "nextCursor": null,
+    "limit": 100,
+    "manager": true,
+    "canWrite": true,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/updates?limit=6": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "82d2ddb0-45c6-4041-8c48-fd0323f42d21",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "body": "Discovery wrapped on time. Design tokens are halfway approved, and checkout mockups start this week. Launch target stays at week 6.",
+      "status": "PUBLISHED",
+      "revision": 1,
+      "created_at": "2026-11-02T14:42:28.103Z",
+      "withdrawn_at": null
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 6,
+    "manager": true,
+    "canWrite": true,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": true
+     }
+    ]
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/reviews?limit=10": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 10
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/reviews?limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/candidates": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "49a5c20a-607f-4d15-a884-5f4d1472c140",
+      "name": "Amina Farouk"
+     },
+     {
+      "id": "4ce5b26d-99eb-4778-ad20-455f2e5375b1",
+      "name": "Karim Aziz"
+     },
+     {
+      "id": "5d59f00a-7765-4fc1-8c12-8298d429df11",
+      "name": "Layla Samir"
+     },
+     {
+      "id": "7c5ee2f2-4c96-4ef0-9608-1aca5dc12e4d",
+      "name": "Demo Showcase"
+     },
+     {
+      "id": "f00e40a1-f297-4ecc-8a7c-2d3f868ef45d",
+      "name": "Omar Haddad"
+     }
+    ],
+    "total": 5,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/documents?project_id=fd77fd54-83bd-4de4-b3cb-28125102f8f6&limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Route unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "eaa60f0c-34a4-4caa-bc57-4c9e4a10d133"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/0c0af1e4-fd20-4d37-aa49-f6677be1d571": {
+   "status": 200,
+   "body": {
+    "id": "0c0af1e4-fd20-4d37-aa49-f6677be1d571",
+    "revision": 1,
+    "title": "Finalise delivery schedule",
+    "description": "Confirm milestone dates and approval owners with Northwind.",
+    "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+    "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+    "priority": "HIGH",
+    "status": "DONE",
+    "due_at": "2026-10-27T14:35:06.161Z",
+    "position": 0,
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:35:06.624Z",
+    "updated_at": "2026-11-02T14:35:06.624Z",
+    "source_feedback_thread_id": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/0c0af1e4-fd20-4d37-aa49-f6677be1d571/checklist": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "ed699804-e612-40cc-84a0-e824894c0206",
+      "revision": 1,
+      "label": "Kickoff call notes shared",
+      "position": 0,
+      "completed": true,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:08.752Z",
+      "updated_at": "2026-11-02T14:35:08.752Z",
+      "completed_at": "2026-11-02T14:35:09.634Z",
+      "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+     },
+     {
+      "id": "31ab5e1f-e861-49e1-8cc9-1c564e1b83a6",
+      "revision": 1,
+      "label": "Approval owner named",
+      "position": 1,
+      "completed": true,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:10.774Z",
+      "updated_at": "2026-11-02T14:35:10.774Z",
+      "completed_at": "2026-11-02T14:35:11.653Z",
+      "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+     }
+    ],
+    "total": 2,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/0c0af1e4-fd20-4d37-aa49-f6677be1d571/comments": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "2b58600e-910e-40c8-b4f7-8d59c3698f38",
+      "thread_id": null,
+      "author_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "body": "Signed off. Rana owns approvals from here on.",
+      "created_at": "2026-11-02T14:35:12.752Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/0c0af1e4-fd20-4d37-aa49-f6677be1d571/history": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "bb80dbca-87eb-4503-ac92-cc8e36a677a2",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.created",
+      "fields": {
+       "title": "Finalise delivery schedule",
+       "due_at": "2026-10-27T14:35:06.161Z",
+       "status": "DONE",
+       "position": 0,
+       "priority": "HIGH",
+       "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+       "description": "Confirm milestone dates and approval owners with Northwind.",
+       "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268"
+      },
+      "created_at": "2026-11-02T14:35:06.624Z"
+     },
+     {
+      "id": "fc5f6b30-ae1c-4d66-a3f7-9d359219f73b",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Kickoff call notes shared",
+       "itemId": "ed699804-e612-40cc-84a0-e824894c0206",
+       "position": 0,
+       "completed": true,
+       "completed_at": "2026-11-02T14:35:09.634Z",
+       "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+      },
+      "created_at": "2026-11-02T14:35:08.752Z"
+     },
+     {
+      "id": "5737c21e-588b-4276-90ae-f8a2f56809ae",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Approval owner named",
+       "itemId": "31ab5e1f-e861-49e1-8cc9-1c564e1b83a6",
+       "position": 1,
+       "completed": true,
+       "completed_at": "2026-11-02T14:35:11.653Z",
+       "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+      },
+      "created_at": "2026-11-02T14:35:10.774Z"
+     },
+     {
+      "id": "0e1f2a2c-fb90-48c6-a2e5-26e4e57b4365",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "comment.created",
+      "fields": {
+       "commentId": "2b58600e-910e-40c8-b4f7-8d59c3698f38"
+      },
+      "created_at": "2026-11-02T14:35:12.752Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/de27fb9a-81b3-44c9-ac7b-6413ee542e55": {
+   "status": 200,
+   "body": {
+    "id": "de27fb9a-81b3-44c9-ac7b-6413ee542e55",
+    "revision": 1,
+    "title": "Content inventory",
+    "description": "Collect product copy, photography and pricing from the client.",
+    "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+    "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+    "priority": "NORMAL",
+    "status": "DONE",
+    "due_at": "2026-10-30T14:35:14.184Z",
+    "position": 1,
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:35:14.661Z",
+    "updated_at": "2026-11-02T14:35:14.661Z",
+    "source_feedback_thread_id": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/de27fb9a-81b3-44c9-ac7b-6413ee542e55/checklist": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "8dd71568-d6e0-410e-80b3-de556266d180",
+      "revision": 1,
+      "label": "Product list received",
+      "position": 0,
+      "completed": true,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:16.744Z",
+      "updated_at": "2026-11-02T14:35:16.744Z",
+      "completed_at": "2026-11-02T14:35:17.623Z",
+      "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/de27fb9a-81b3-44c9-ac7b-6413ee542e55/comments": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/de27fb9a-81b3-44c9-ac7b-6413ee542e55/history": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "ab943f41-e737-40f0-bb16-1a4731478dbe",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.created",
+      "fields": {
+       "title": "Content inventory",
+       "due_at": "2026-10-30T14:35:14.184Z",
+       "status": "DONE",
+       "position": 1,
+       "priority": "NORMAL",
+       "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+       "description": "Collect product copy, photography and pricing from the client.",
+       "milestone_id": "bf9bc429-5bd4-4379-9fea-04111f2eb268"
+      },
+      "created_at": "2026-11-02T14:35:14.661Z"
+     },
+     {
+      "id": "c002556e-fe51-4776-a4eb-5d2a4cc91997",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Product list received",
+       "itemId": "8dd71568-d6e0-410e-80b3-de556266d180",
+       "position": 0,
+       "completed": true,
+       "completed_at": "2026-11-02T14:35:17.623Z",
+       "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+      },
+      "created_at": "2026-11-02T14:35:16.744Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/bf2d6ee8-b469-4478-84d4-4aabb126f200": {
+   "status": 200,
+   "body": {
+    "id": "bf2d6ee8-b469-4478-84d4-4aabb126f200",
+    "revision": 2,
+    "title": "Design tokens and type scale",
+    "description": "Establish the palette, spacing scale and type ramp for the storefront.",
+    "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e",
+    "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+    "priority": "HIGH",
+    "status": "IN_PROGRESS",
+    "due_at": "2026-11-06T14:35:18.174Z",
+    "position": 2,
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:35:18.643Z",
+    "updated_at": "2026-11-02T17:37:21.943Z",
+    "source_feedback_thread_id": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/bf2d6ee8-b469-4478-84d4-4aabb126f200/checklist": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "a470199c-78d9-4ec2-864d-7573e80a1a47",
+      "revision": 1,
+      "label": "Colour ramp approved",
+      "position": 0,
+      "completed": true,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:20.659Z",
+      "updated_at": "2026-11-02T14:35:20.659Z",
+      "completed_at": "2026-11-02T14:35:21.538Z",
+      "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+     },
+     {
+      "id": "198c62ba-42a7-4eb8-a527-0605189618d9",
+      "revision": 1,
+      "label": "Type scale approved",
+      "position": 1,
+      "completed": false,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:22.544Z",
+      "updated_at": "2026-11-02T14:35:22.544Z",
+      "completed_at": null,
+      "completed_by": null
+     },
+     {
+      "id": "efd0e273-e212-457c-92b3-4e6fb59b09ba",
+      "revision": 1,
+      "label": "Component library wired",
+      "position": 2,
+      "completed": false,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:24.432Z",
+      "updated_at": "2026-11-02T14:35:24.432Z",
+      "completed_at": null,
+      "completed_by": null
+     }
+    ],
+    "total": 3,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/bf2d6ee8-b469-4478-84d4-4aabb126f200/comments": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "37742d4b-66c8-4ca5-964c-4ef9d21bb6ae",
+      "thread_id": null,
+      "author_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "body": "Waiting on the client to confirm the heading sizes before we build components.",
+      "created_at": "2026-11-02T14:35:26.339Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/bf2d6ee8-b469-4478-84d4-4aabb126f200/history": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "d8be0e64-4c5f-4499-81b4-871bcf8595d2",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.created",
+      "fields": {
+       "title": "Design tokens and type scale",
+       "due_at": "2026-11-06T14:35:18.174Z",
+       "status": "IN_PROGRESS",
+       "position": 2,
+       "priority": "HIGH",
+       "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+       "description": "Establish the palette, spacing scale and type ramp for the storefront.",
+       "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e"
+      },
+      "created_at": "2026-11-02T14:35:18.643Z"
+     },
+     {
+      "id": "1521bbb6-80b4-488e-aeec-a433166105b9",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Colour ramp approved",
+       "itemId": "a470199c-78d9-4ec2-864d-7573e80a1a47",
+       "position": 0,
+       "completed": true,
+       "completed_at": "2026-11-02T14:35:21.538Z",
+       "completed_by": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm"
+      },
+      "created_at": "2026-11-02T14:35:20.659Z"
+     },
+     {
+      "id": "db9ff0ae-7935-460b-9cd3-3d72a749abc8",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Type scale approved",
+       "itemId": "198c62ba-42a7-4eb8-a527-0605189618d9",
+       "position": 1,
+       "completed": false,
+       "completed_at": null,
+       "completed_by": null
+      },
+      "created_at": "2026-11-02T14:35:22.544Z"
+     },
+     {
+      "id": "6f4e842f-a0b4-45c6-a3e3-66ccf61e266b",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Component library wired",
+       "itemId": "efd0e273-e212-457c-92b3-4e6fb59b09ba",
+       "position": 2,
+       "completed": false,
+       "completed_at": null,
+       "completed_by": null
+      },
+      "created_at": "2026-11-02T14:35:24.432Z"
+     },
+     {
+      "id": "a27eae7e-435b-424c-afdd-3e8749d21cc6",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "comment.created",
+      "fields": {
+       "commentId": "37742d4b-66c8-4ca5-964c-4ef9d21bb6ae"
+      },
+      "created_at": "2026-11-02T14:35:26.339Z"
+     },
+     {
+      "id": "9fb02458-1c2e-4a81-ada5-d4e025a0fec5",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.updated",
+      "fields": {
+       "title": "Design tokens and type scale",
+       "due_at": "2026-11-06T14:35:18.174Z",
+       "status": "IN_PROGRESS",
+       "position": 2,
+       "priority": "HIGH",
+       "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+       "description": "Establish the palette, spacing scale and type ramp for the storefront.",
+       "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e"
+      },
+      "created_at": "2026-11-02T17:37:21.943Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/c36939ec-5095-4e96-9b58-17614807aa60": {
+   "status": 200,
+   "body": {
+    "id": "c36939ec-5095-4e96-9b58-17614807aa60",
+    "revision": 2,
+    "title": "Checkout flow mockups",
+    "description": "Design the cart, subscription and confirmation screens.",
+    "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e",
+    "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+    "priority": "URGENT",
+    "status": "TODO",
+    "due_at": "2026-11-11T14:35:27.775Z",
+    "position": 3,
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:35:28.238Z",
+    "updated_at": "2026-11-02T17:37:24.468Z",
+    "source_feedback_thread_id": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/c36939ec-5095-4e96-9b58-17614807aa60/checklist": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "4f55e9c1-20e0-4c3e-8bce-1a7fae52c50f",
+      "revision": 1,
+      "label": "Cart states mapped",
+      "position": 0,
+      "completed": false,
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "created_at": "2026-11-02T14:35:30.279Z",
+      "updated_at": "2026-11-02T14:35:30.279Z",
+      "completed_at": null,
+      "completed_by": null
+     }
+    ],
+    "total": 1,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/c36939ec-5095-4e96-9b58-17614807aa60/comments": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/c36939ec-5095-4e96-9b58-17614807aa60/history": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "40e86efa-4c6b-4d34-8273-ec9ff55a8ed8",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.created",
+      "fields": {
+       "title": "Checkout flow mockups",
+       "due_at": "2026-11-11T14:35:27.775Z",
+       "status": "TODO",
+       "position": 3,
+       "priority": "URGENT",
+       "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+       "description": "Design the cart, subscription and confirmation screens.",
+       "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e"
+      },
+      "created_at": "2026-11-02T14:35:28.238Z"
+     },
+     {
+      "id": "f1c7622e-4925-42c8-8f7b-d2cdb5d62bc8",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "checklist.created",
+      "fields": {
+       "label": "Cart states mapped",
+       "itemId": "4f55e9c1-20e0-4c3e-8bce-1a7fae52c50f",
+       "position": 0,
+       "completed": false,
+       "completed_at": null,
+       "completed_by": null
+      },
+      "created_at": "2026-11-02T14:35:30.279Z"
+     },
+     {
+      "id": "b62a2b81-6cae-4306-b337-16db5fe44541",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.updated",
+      "fields": {
+       "title": "Checkout flow mockups",
+       "due_at": "2026-11-11T14:35:27.775Z",
+       "status": "TODO",
+       "position": 3,
+       "priority": "URGENT",
+       "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+       "description": "Design the cart, subscription and confirmation screens.",
+       "milestone_id": "35223164-235e-4bae-915a-4553c6b5309e"
+      },
+      "created_at": "2026-11-02T17:37:24.468Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/e7582443-709b-4276-9b7a-78f0fc8343d2": {
+   "status": 200,
+   "body": {
+    "id": "e7582443-709b-4276-9b7a-78f0fc8343d2",
+    "revision": 2,
+    "title": "Storefront build",
+    "description": "Implement the approved design and connect the catalogue feed.",
+    "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+    "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+    "priority": "NORMAL",
+    "status": "BLOCKED",
+    "due_at": "2026-11-28T14:35:31.715Z",
+    "position": 4,
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:35:32.183Z",
+    "updated_at": "2026-11-02T17:37:26.607Z",
+    "source_feedback_thread_id": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/e7582443-709b-4276-9b7a-78f0fc8343d2/checklist": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/e7582443-709b-4276-9b7a-78f0fc8343d2/comments": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "f96efc1f-2b0e-4e08-ba0f-0b9af85917ed",
+      "thread_id": null,
+      "author_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "body": "Blocked until the product photography lands in the asset vault.",
+      "created_at": "2026-11-02T14:35:34.275Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/e7582443-709b-4276-9b7a-78f0fc8343d2/history": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "a070a64b-0f79-407b-b2d5-3a7890d9725c",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.created",
+      "fields": {
+       "title": "Storefront build",
+       "due_at": "2026-11-28T14:35:31.715Z",
+       "status": "BLOCKED",
+       "position": 4,
+       "priority": "NORMAL",
+       "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+       "description": "Implement the approved design and connect the catalogue feed.",
+       "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396"
+      },
+      "created_at": "2026-11-02T14:35:32.183Z"
+     },
+     {
+      "id": "2ff545e1-7e0d-49e9-bf0c-2b7168e71719",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "comment.created",
+      "fields": {
+       "commentId": "f96efc1f-2b0e-4e08-ba0f-0b9af85917ed"
+      },
+      "created_at": "2026-11-02T14:35:34.275Z"
+     },
+     {
+      "id": "c68f5896-a7cb-483a-84f0-3a7253ea4aea",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.updated",
+      "fields": {
+       "title": "Storefront build",
+       "due_at": "2026-11-28T14:35:31.715Z",
+       "status": "BLOCKED",
+       "position": 4,
+       "priority": "NORMAL",
+       "assignee_id": "9a0beefd-19ca-4867-8715-fd406ac73bc2",
+       "description": "Implement the approved design and connect the catalogue feed.",
+       "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396"
+      },
+      "created_at": "2026-11-02T17:37:26.607Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/3ec80bcc-72f2-4604-9dc6-935808b37082": {
+   "status": 200,
+   "body": {
+    "id": "3ec80bcc-72f2-4604-9dc6-935808b37082",
+    "revision": 1,
+    "title": "Launch checklist and handover",
+    "description": "Run the pre-launch checks and hand the admin training notes to the client.",
+    "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+    "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+    "priority": "LOW",
+    "status": "TODO",
+    "due_at": "2026-12-12T14:35:35.744Z",
+    "position": 5,
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:35:36.206Z",
+    "updated_at": "2026-11-02T14:35:36.206Z",
+    "source_feedback_thread_id": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/3ec80bcc-72f2-4604-9dc6-935808b37082/checklist": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/3ec80bcc-72f2-4604-9dc6-935808b37082/comments": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/tasks/3ec80bcc-72f2-4604-9dc6-935808b37082/history": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "ff501e94-4f7a-4a64-8b40-c61e9d8d2fa3",
+      "actor_id": "1wMj9BAGEOhSurRzY14S7TZevDPWtIqm",
+      "kind": "tasks.created",
+      "fields": {
+       "title": "Launch checklist and handover",
+       "due_at": "2026-12-12T14:35:35.744Z",
+       "status": "TODO",
+       "position": 5,
+       "priority": "LOW",
+       "assignee_id": "b836034d-3c5f-4d5e-9515-e649de6bdfab",
+       "description": "Run the pre-launch checks and hand the admin training notes to the client.",
+       "milestone_id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396"
+      },
+      "created_at": "2026-11-02T14:35:36.206Z"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/milestones/bf9bc429-5bd4-4379-9fea-04111f2eb268": {
+   "status": 200,
+   "body": {
+    "id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+    "revision": 1,
+    "title": "Discovery and scope",
+    "due_at": "2026-10-27T14:31:46.997Z",
+    "position": 0,
+    "status": "COMPLETED",
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:31:47.459Z",
+    "updated_at": "2026-11-02T14:31:47.459Z",
+    "summary": {
+     "total": 2,
+     "done": 2,
+     "overdue": 0,
+     "progress": 1
+    }
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/milestones/35223164-235e-4bae-915a-4553c6b5309e": {
+   "status": 200,
+   "body": {
+    "id": "35223164-235e-4bae-915a-4553c6b5309e",
+    "revision": 1,
+    "title": "Design system",
+    "due_at": "2026-11-14T14:31:48.723Z",
+    "position": 1,
+    "status": "OPEN",
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:31:49.181Z",
+    "updated_at": "2026-11-02T14:31:49.181Z",
+    "summary": {
+     "total": 2,
+     "done": 0,
+     "overdue": 0,
+     "progress": 0
+    }
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/milestones/4cbf74c5-2921-4b60-9279-2ce4f02e1396": {
+   "status": 200,
+   "body": {
+    "id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+    "revision": 1,
+    "title": "Build and launch",
+    "due_at": "2026-12-12T14:31:50.458Z",
+    "position": 2,
+    "status": "OPEN",
+    "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "created_at": "2026-11-02T14:31:50.927Z",
+    "updated_at": "2026-11-02T14:31:50.927Z",
+    "summary": {
+     "total": 2,
+     "done": 0,
+     "overdue": 0,
+     "progress": 0
+    }
+   }
+  }
+ }
+}

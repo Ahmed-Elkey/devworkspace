@@ -1,0 +1,46 @@
+[
+ {
+  "email": "demo@agency.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 97,
+  "refused": 13
+ },
+ {
+  "email": "admin@agency.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 97,
+  "refused": 13
+ },
+ {
+  "email": "pm@agency.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 97,
+  "refused": 19
+ },
+ {
+  "email": "designer@agency.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 97,
+  "refused": 24
+ },
+ {
+  "email": "viewer@agency.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 97,
+  "refused": 24
+ },
+ {
+  "email": "sarah.jenkins@acmeglobal.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 48,
+  "refused": 30,
+  "missed": 0
+ },
+ {
+  "email": "marc.wong@acmeglobal.com",
+  "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+  "reads": 48,
+  "refused": 30,
+  "missed": 0
+ }
+]

@@ -6,6 +6,7 @@
  * endpoints, which re-check authorization. */
 import { io } from 'socket.io-client'
 import { auth } from './auth.js'
+import { demoMode } from '../demo/index.js'
 
 let socket = null
 let subscribedProject = null
@@ -50,6 +51,9 @@ function notify(detail) {
 
 export function start(options = {}) {
   if (typeof window === 'undefined' || !auth.activeOrgId) return
+  // The offline demo has no server to tell it anything changed, and the pages it
+  // shows are edited by the visitor alone.
+  if (demoMode) return null
   const projectId = options.projectId || window.__DW_PROJECT_ID__ || null
   if (!socket) {
     const context = handshake(projectId)

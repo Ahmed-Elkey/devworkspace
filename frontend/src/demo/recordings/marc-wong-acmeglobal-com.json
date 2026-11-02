@@ -1,0 +1,547 @@
+{
+ "email": "marc.wong@acmeglobal.com",
+ "capturedFrom": "https://frontend-pi-eight-ew4t31qvv2.vercel.app",
+ "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+ "recordings": {
+  "GET /me": {
+   "status": 200,
+   "body": {
+    "id": "ccAc3aUmD2aajQfPodhFdvp7gPwwJzIk",
+    "name": "Marc Wong",
+    "email": "marc.wong@acmeglobal.com",
+    "revision": 1
+   }
+  },
+  "GET /me/principals": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "nextCursor": null
+   }
+  },
+  "GET /me/client-principals": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "b567592f-2bef-4468-8edb-620116c40b2d",
+      "organizationId": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+      "name": "Marc Wong",
+      "role": "CLIENT",
+      "capacity": "CLIENT"
+     }
+    ],
+    "nextCursor": null
+   }
+  },
+  "GET /me/image": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Route unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "476969ee-3b9b-4d3d-a37e-743e07bbc49b"
+   }
+  },
+  "GET /me/notification-preferences": {
+   "status": 200,
+   "body": {
+    "reviews": true,
+    "revision": 1,
+    "assignments": true,
+    "client_updates": true,
+    "discussions_documents": true
+   }
+  },
+  "GET /me/sessions": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "RGrfDhqzxUC6NATRGmELro314uMUAC8D",
+      "createdAt": "2026-11-02T20:18:39.213Z",
+      "expiresAt": "2026-11-03T04:18:39.213Z",
+      "current": true
+     },
+     {
+      "id": "vf2j9TJmtKexvwIn6tYj4FFdSZkb7N8c",
+      "createdAt": "2026-11-02T19:58:20.610Z",
+      "expiresAt": "2026-11-03T03:58:20.610Z",
+      "current": false
+     }
+    ],
+    "nextCursor": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "0bc77c80-ec81-4de6-8cbf-02ec5019ff92"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/team": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "f87ca4e4-936c-4082-9fea-9823526337ab"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/team?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "a049201e-5fea-4f02-970e-025a1afe8363"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/invitations": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "ed0a0609-8ff9-4ba7-b8d1-9f5b10deae90"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/invitations?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "0502de18-e033-4b94-aee1-0c3641111f5c"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/logo": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "b3afcaa8-258f-4dee-a24d-c50a4f12fd20"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "07c34d14-d856-4ba3-9bc5-95463a8c4970"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "8c643cca-17a9-476c-bac3-07b573baec0f"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=100&page=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "f6b9c9d8-9b9e-4582-b506-f37a3641cd21"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "7fd1bc22-ec46-4d88-9df1-fff9aa45ff8d"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "4ea599f6-30d6-4edc-8352-7087838bb76e"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "8d063651-7aba-4abf-be5f-f56030191447"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=100&page=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "5e8c8174-0eb8-43ab-aa4e-20decb0e1a8a"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "a512b14b-02f5-4c00-9cd6-2f66f8511b1e"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/dashboard?limit=10": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "0d617a31-4c44-4ab0-9146-3b53489c0681"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "0dcd48ff-2d53-4b3a-9577-0fe0a22936ce"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "6643921f-ebb4-44c5-ad93-77743b05847a"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks?limit=5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "85d59672-6917-4397-85b4-d3ae1100f891"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=8": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "6ed566b1-4df8-41af-bb53-a355308f68f6"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=100&page=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "12752005-f176-4cf7-9463-030b777ded01"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "4851f42e-3611-4634-a102-5ce20ddaa5a9"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "2d2e75bc-50d5-4208-85c7-864d33f99fa5"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "444044c4-07e5-4333-bdb3-bdd51bf47e96"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews?status=OPEN&limit=5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "b770f6a9-c300-4340-9097-bf072bbd3b72"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/documents": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "88b70512-4faa-4a8f-861e-77443a3cc91b"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/documents?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "9246f672-5401-482c-9e73-845abc108513"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/audit?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "52a4da62-1308-4cc9-a2fa-41256a5983f0"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reports": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "b8117c2d-495c-45bb-9f55-28f2c3d1da67"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects?limit=50": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE"
+     }
+    ],
+    "page": 1,
+    "limit": 50
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects?limit=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE"
+     }
+    ],
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/notifications?limit=8": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 8
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/notifications?limit=100": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/reviews?status=OPEN&limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/reviews?status=OPEN&limit=1": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6": {
+   "status": 200,
+   "body": {
+    "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "name": "Storefront Relaunch",
+    "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+    "status": "ACTIVE",
+    "milestones": [
+     {
+      "id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "title": "Discovery and scope",
+      "status": "COMPLETED",
+      "due_at": "2026-10-27T14:31:46.997Z"
+     },
+     {
+      "id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "title": "Design system",
+      "status": "OPEN",
+      "due_at": "2026-11-14T14:31:48.723Z"
+     },
+     {
+      "id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "title": "Build and launch",
+      "status": "OPEN",
+      "due_at": "2026-12-12T14:31:50.458Z"
+     }
+    ],
+    "milestone_total": 3,
+    "milestone_page": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/versions?limit=10": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 10,
+    "manager": false
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/versions?limit=50": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 50,
+    "manager": false
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/reviews?limit=10": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 10
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/reviews?status=OPEN&limit=1": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/notifications?limit=8": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "1f2d2405-94c4-46c2-ad79-94793c06176e"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/updates?project_id=fd77fd54-83bd-4de4-b3cb-28125102f8f6&limit=5": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "82d2ddb0-45c6-4041-8c48-fd0323f42d21",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "kind": "UPDATE",
+      "body": "Discovery wrapped on time. Design tokens are halfway approved, and checkout mockups start this week. Launch target stays at week 6.",
+      "created_at": "2026-11-02T14:42:28.103Z",
+      "review_id": null,
+      "version_number": null,
+      "status": "PUBLISHED"
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 5,
+    "manager": false,
+    "canWrite": false,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": false
+     }
+    ]
+   }
+  }
+ }
+}

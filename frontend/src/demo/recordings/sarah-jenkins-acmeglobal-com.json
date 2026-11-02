@@ -1,0 +1,553 @@
+{
+ "email": "sarah.jenkins@acmeglobal.com",
+ "capturedFrom": "https://frontend-pi-eight-ew4t31qvv2.vercel.app",
+ "org": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+ "recordings": {
+  "GET /me": {
+   "status": 200,
+   "body": {
+    "id": "BqDEnanutFDVXsApPUSyApuI2LjSlSYp",
+    "name": "Sarah Jenkins",
+    "email": "sarah.jenkins@acmeglobal.com",
+    "revision": 1
+   }
+  },
+  "GET /me/principals": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "nextCursor": null
+   }
+  },
+  "GET /me/client-principals": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "df945808-53da-4033-9844-bfcb158de089",
+      "organizationId": "30d2212b-3f57-4a14-a454-cdd5405bd0d5",
+      "name": "Sarah Jenkins",
+      "role": "CLIENT",
+      "capacity": "CLIENT"
+     }
+    ],
+    "nextCursor": null
+   }
+  },
+  "GET /me/image": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Route unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "96351c7c-7946-4c7c-902f-de225a68e029"
+   }
+  },
+  "GET /me/notification-preferences": {
+   "status": 200,
+   "body": {
+    "reviews": true,
+    "revision": 1,
+    "assignments": true,
+    "client_updates": true,
+    "discussions_documents": true
+   }
+  },
+  "GET /me/sessions": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "Ri67a4xydNRi4ZGhv0yeK3lAOpT39Hop",
+      "createdAt": "2026-11-02T20:01:36.629Z",
+      "expiresAt": "2026-11-03T04:01:36.629Z",
+      "current": false
+     },
+     {
+      "id": "TsGFWSxoEGL8JF0SstIyrmLITPCJ2pOa",
+      "createdAt": "2026-11-02T19:47:36.898Z",
+      "expiresAt": "2026-11-03T03:47:36.898Z",
+      "current": false
+     },
+     {
+      "id": "zEMYyYA1a3FjRlN8QQ4OgsiAMW7CYWq1",
+      "createdAt": "2026-11-02T20:16:59.371Z",
+      "expiresAt": "2026-11-03T04:16:59.371Z",
+      "current": true
+     }
+    ],
+    "nextCursor": null
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "9814b4df-1ff3-4bbf-aa02-be779b70ca12"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/team": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "67299789-9743-445e-8768-34094f584260"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/team?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "d4cc6872-104e-4e39-94bd-03bebda7cd20"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/invitations": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "9cd165cd-10ae-4874-ba70-4fa43bb35675"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/invitations?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "461b343e-f044-4463-a0e9-6cdc86f357c4"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/logo": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "3ac2f416-12ed-4666-9f55-bbfccd8dfb2c"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "25a7d48e-f284-46a9-8835-2134340da126"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "08ce6ad8-a0e0-4fe2-a6c2-708831e5c8ad"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=100&page=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "04646ab2-57f7-469b-b17f-fe596088644f"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/clients?limit=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "e649464f-6907-4a99-a2ad-f4a53ca7a97c"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "6b5f5c47-e9af-493a-bb01-2cd55a5c8b90"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "f53e3a42-d483-4d4a-9103-2f546e66f03b"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=100&page=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "364a0155-4692-4b3c-92b4-648ffcffe611"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/projects?limit=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "db364517-11a8-44c8-b825-4df22d4f3602"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/dashboard?limit=10": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "1fb305e2-15f3-4f30-9ce6-706944c5ccdc"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "233f9c5a-c813-4597-9e03-c92cd4281f01"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "4ad0f765-0791-45ef-ad25-6d3a779fb0c4"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/my-tasks?limit=5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "f0e7cf07-82fc-4592-8d62-da4bca18cafc"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=8": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "c6e901fc-b46a-427c-8366-1ee49bd905a8"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=100&page=1": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "8b5dbc86-0415-4d94-8fb0-acaea908ae7d"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/notifications?limit=5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "083a7337-31c9-45d3-9c22-863f75f2be69"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "0d66d1e0-ab22-4d88-95a2-e480edbc4fda"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "415ae985-d276-4640-b1d4-35c677608dfa"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reviews?status=OPEN&limit=5": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "e163ba89-5237-4dce-bb0f-ab72b6426172"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/documents": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "921d471d-1a87-4395-bb97-9dd73d135497"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/documents?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "d5967789-182b-4043-b873-abbf0d2e6833"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/audit?limit=100": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "a4552852-9222-41d9-a51c-3d7dd5b912cf"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/reports": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:PRINCIPAL_UNAVAILABLE",
+    "title": "Principal unavailable",
+    "status": 404,
+    "code": "PRINCIPAL_UNAVAILABLE",
+    "requestId": "8caf2188-11b3-4ad1-823e-a61ca27c18e1"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE"
+     }
+    ],
+    "page": 1,
+    "limit": 25
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects?limit=50": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE"
+     }
+    ],
+    "page": 1,
+    "limit": 50
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects?limit=1": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+      "status": "ACTIVE"
+     }
+    ],
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/notifications?limit=8": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 8
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/notifications?limit=100": {
+   "status": 200,
+   "body": {
+    "total": 0,
+    "unread": 0,
+    "items": [],
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/reviews?status=OPEN&limit=100": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 100
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/reviews?status=OPEN&limit=1": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6": {
+   "status": 200,
+   "body": {
+    "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+    "name": "Storefront Relaunch",
+    "description": "Design, build and launch the new Northwind storefront with a subscription flow and client-approved deliverables.",
+    "status": "ACTIVE",
+    "milestones": [
+     {
+      "id": "bf9bc429-5bd4-4379-9fea-04111f2eb268",
+      "title": "Discovery and scope",
+      "status": "COMPLETED",
+      "due_at": "2026-10-27T14:31:46.997Z"
+     },
+     {
+      "id": "35223164-235e-4bae-915a-4553c6b5309e",
+      "title": "Design system",
+      "status": "OPEN",
+      "due_at": "2026-11-14T14:31:48.723Z"
+     },
+     {
+      "id": "4cbf74c5-2921-4b60-9279-2ce4f02e1396",
+      "title": "Build and launch",
+      "status": "OPEN",
+      "due_at": "2026-12-12T14:31:50.458Z"
+     }
+    ],
+    "milestone_total": 3,
+    "milestone_page": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/versions?limit=10": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 10,
+    "manager": false
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/versions?limit=50": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "page": 1,
+    "limit": 50,
+    "manager": false
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/reviews?limit=10": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 10
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/reviews?status=OPEN&limit=1": {
+   "status": 200,
+   "body": {
+    "items": [],
+    "total": 0,
+    "page": 1,
+    "limit": 1
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/projects/fd77fd54-83bd-4de4-b3cb-28125102f8f6/notifications?limit=8": {
+   "status": 404,
+   "body": {
+    "type": "urn:devworkspace:problem:NOT_FOUND",
+    "title": "Resource unavailable",
+    "status": 404,
+    "code": "NOT_FOUND",
+    "requestId": "7d06bd9a-3b17-4c04-b35b-6e7f11274878"
+   }
+  },
+  "GET /organizations/30d2212b-3f57-4a14-a454-cdd5405bd0d5/portal/updates?project_id=fd77fd54-83bd-4de4-b3cb-28125102f8f6&limit=5": {
+   "status": 200,
+   "body": {
+    "items": [
+     {
+      "id": "82d2ddb0-45c6-4041-8c48-fd0323f42d21",
+      "project_id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "kind": "UPDATE",
+      "body": "Discovery wrapped on time. Design tokens are halfway approved, and checkout mockups start this week. Launch target stays at week 6.",
+      "created_at": "2026-11-02T14:42:28.103Z",
+      "review_id": null,
+      "version_number": null,
+      "status": "PUBLISHED"
+     }
+    ],
+    "total": 1,
+    "nextCursor": null,
+    "limit": 5,
+    "manager": false,
+    "canWrite": false,
+    "projects": [
+     {
+      "id": "fd77fd54-83bd-4de4-b3cb-28125102f8f6",
+      "name": "Storefront Relaunch",
+      "canWrite": false
+     }
+    ]
+   }
+  }
+ }
+}

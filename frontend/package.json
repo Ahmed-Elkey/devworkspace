@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:demo": "VITE_DEMO=1 vite build",
+    "capture:demo": "node scripts/demo/capture.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

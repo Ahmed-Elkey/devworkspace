@@ -7,6 +7,8 @@
  * - Auto-injection of X-Organization-Principal for org-scoped calls
  */
 
+import { demoMode, demoRequest } from '../demo/index.js';
+
 export class ApiError extends Error {
   constructor(status, code, message, details = {}) {
     super(message || code || `Request failed with status ${status}`);
@@ -127,6 +129,11 @@ export async function getCsrfToken(forceRefresh = false) {
 
   csrfFetchPromise = (async () => {
     try {
+      if (demoMode) {
+        cachedCsrfToken = 'offline-demo-csrf';
+        writeStoredCsrf(cachedCsrfToken);
+        return cachedCsrfToken;
+      }
       const res = await fetch('/api/v1/identity/csrf', {
         method: 'GET',
         credentials: 'include'
@@ -233,7 +240,11 @@ export async function request(path, options = {}) {
     body
   };
 
-  let res = await fetch(url, fetchOptions);
+  // In the offline demo build nothing reaches the network: the recorded answers
+  // come back through the same response shape, so all the handling below stays.
+  let res = demoMode
+    ? await demoRequest(method, url, body, headers)
+    : await fetch(url, fetchOptions);
 
   // If CSRF check failed, attempt one refresh
   if (res.status === 403 && isMutation && !options._retriedCsrf) {

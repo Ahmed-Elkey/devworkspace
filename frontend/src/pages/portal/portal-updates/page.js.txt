@@ -115,7 +115,7 @@ function render() {
         ? '<p style="margin-top:10px"><a class="btn lime sm" href="/portal/portal-review?id=' + encodeURIComponent(u.project_id) + '&review=' + encodeURIComponent(u.review_id) + '">Open review</a></p>'
         : '';
 
-      return '<article class="post" style="border-bottom:1px solid var(--border);padding:16px 0">' +
+      return '<article class="post">' +
         '<small style="color:var(--muted)">' + esc(dateStr) + ' · ' + esc(projName) + '</small>' +
         '<h3 style="margin:6px 0 8px;font-size:16px">' + esc(title) + '</h3>' +
         '<p style="margin:0;line-height:1.5">' + esc(u.body || 'No details provided.') + '</p>' +
