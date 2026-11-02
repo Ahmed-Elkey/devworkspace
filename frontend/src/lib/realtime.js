@@ -10,6 +10,7 @@ import { auth } from './auth.js'
 let socket = null
 let subscribedProject = null
 const watchers = new Set()
+let everConnected = false
 
 function handshake(projectId) {
   const principal = auth.getActivePrincipal()
@@ -59,10 +60,13 @@ export function start(options = {}) {
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
       // Serverless deployments have no gateway to reach. Give up after a few
-      // attempts instead of retrying forever; the catch-up poll below covers it.
+      // attempts instead of retrying forever.
       reconnectionAttempts: 3,
     })
-    socket.on('connect', () => notify({ reason: 'reconnect' }))
+    socket.on('connect', () => {
+      everConnected = true
+      notify({ reason: 'reconnect' })
+    })
     socket.on('notifications.changed', () => notify({ reason: 'notifications' }))
     socket.on('state.changed', (payload) => notify({ reason: 'project', ...payload }))
     subscribedProject = projectId
@@ -71,9 +75,12 @@ export function start(options = {}) {
     socket.emit('subscribe', { project_id: projectId }, () => {})
   }
   // A dead socket must not mean stale data: poll only while the live feed is down.
+  // `everConnected` is what proves a gateway exists at all. Serverless deployments
+  // have none, and there a periodic re-read of every widget catches up to nothing
+  // — it only makes the page look like it keeps losing its own data.
   if (!start.timer) {
     start.timer = setInterval(() => {
-      if (socket && socket.connected) return
+      if (!everConnected || (socket && socket.connected)) return
       notify({ reason: 'catch-up' })
     }, 30000)
   }

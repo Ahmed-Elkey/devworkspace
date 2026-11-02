@@ -60,14 +60,11 @@ features are unreachable on this route even when everything else works:
 | File upload, assets, deliverables, review versions | the storage client only accepts the private loopback S3 endpoint (`packages/server/src/storage.ts`) |
 | Email (verification, reset, invitations) | verification is `requireEmailVerification`, and the sealed envelope is consumed by the worker |
 | Notifications and the project activity feed | both are projected by `materialize_notifications`, which runs in the tenant worker |
-| Live updates | `/socket.io` has no gateway; pages fall back to the 30-second catch-up poll |
+| Live updates | `/socket.io` has no gateway, so nothing is pushed; each page reads its own data when it loads and after you change something |
 
 The worker also refuses any database that is not on `127.0.0.1`
 (`apps/worker/src/mail.ts`), so it cannot be pointed at the hosted database.
 Everything above works on the VPS route below, which runs the full stack.
-
-Self-service signup and password reset on Vercel will create a request that
-never completes; use a pre-verified account instead.
 
 ---
 
