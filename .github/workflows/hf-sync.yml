@@ -1,0 +1,45 @@
+name: sync-backend-to-hf-space
+
+# Keeps a Hugging Face Docker Space in sync with backend/ on every push to main.
+# Required repo secrets:
+#   HF_TOKEN     - a Hugging Face token with "write" scope
+#   HF_USERNAME  - the Hugging Face account name
+#   HF_SPACE     - the Space name (e.g. devworkspace-api)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage Space repository
+        run: |
+          mkdir -p stage
+          cp -a backend/. stage/
+          cp deploy/hf/Dockerfile stage/Dockerfile
+          cp deploy/hf/README.md stage/README.md
+          cp deploy/hf/.dockerignore stage/.dockerignore
+          rm -rf stage/.local stage/tests stage/docs stage/infra stage/logs
+          rm -f stage/.env stage/.env.local
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
+          HF_SPACE: ${{ secrets.HF_SPACE }}
+        run: |
+          cd stage
+          git init -q -b main
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -qm "sync from github ${GITHUB_SHA::8}"
+          git push -f "https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$HF_SPACE" main
