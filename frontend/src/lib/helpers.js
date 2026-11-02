@@ -702,10 +702,6 @@ export function prefetchInternalLinks() {
   }
 }
 
-if (typeof window !== 'undefined') {
-  window.__DW_HELPERS__.prefetchInternalLinks = prefetchInternalLinks;
-}
-
 // Expose globally for classic script page execution
 if (typeof window !== 'undefined') {
   window.__DW_HELPERS__ = {
@@ -742,9 +738,12 @@ if (typeof window !== 'undefined') {
     }
   };
 
+  const runPrefetch = () => {
+    try { prefetchInternalLinks(); } catch (_) {}
+  };
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', prefetchInternalLinks);
+    document.addEventListener('DOMContentLoaded', runPrefetch);
   } else {
-    prefetchInternalLinks();
+    runPrefetch();
   }
 }
