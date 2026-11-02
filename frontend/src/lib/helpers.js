@@ -667,6 +667,45 @@ export function liveReload(load) {
   realtime.start({ projectId: window.__DW_PROJECT_ID__ || null });
 }
 
+// --- INTERNAL LINK PREFETCH ---
+
+// Prefetch linked pages in the background so the next click lands faster.
+// Runs once per page load; safe to call multiple times (idempotent).
+export function prefetchInternalLinks() {
+  if (typeof document === 'undefined') return;
+  const links = document.querySelectorAll('a[href]');
+  const seen = new Set();
+  const origin = window.location.origin;
+
+  for (const link of links) {
+    const href = link.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) continue;
+    if (href.startsWith('http://') || href.startsWith('https://')) {
+      if (!href.startsWith(origin)) continue;
+    }
+
+    try {
+      const url = new URL(href, window.location.href);
+      const key = url.pathname + url.search;
+      if (seen.has(key)) continue;
+      seen.add(key);
+
+      // Skip current page and non-html assets
+      if (url.pathname === window.location.pathname && url.search === window.location.search) continue;
+      if (/\.(css|js|png|jpg|jpeg|svg|gif|ico|woff|woff2|ttf|eot|pdf|zip|mp4|mp3)(\?|$)/i.test(url.pathname)) continue;
+
+      const linkEl = document.createElement('link');
+      linkEl.rel = 'prefetch';
+      linkEl.href = url.toString();
+      document.head.appendChild(linkEl);
+    } catch (_) {}
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.__DW_HELPERS__.prefetchInternalLinks = prefetchInternalLinks;
+}
+
 // Expose globally for classic script page execution
 if (typeof window !== 'undefined') {
   window.__DW_HELPERS__ = {
@@ -695,10 +734,17 @@ if (typeof window !== 'undefined') {
     handlePageAccessError,
     uploadMedia,
     realtime,
+    prefetchInternalLinks,
     /** Re-run `load` whenever the API reports a change for this page. */
     liveReload(load) {
       window.__DW_RELOAD__ = load;
       realtime.start({ projectId: window.__DW_PROJECT_ID__ || null });
     }
   };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', prefetchInternalLinks);
+  } else {
+    prefetchInternalLinks();
+  }
 }
