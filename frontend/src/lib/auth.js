@@ -94,25 +94,20 @@ class AuthService {
     }
 
     this.initPromise = (async () => {
+      const asItems = (data) =>
+        Array.isArray(data?.items) ? data.items : Array.isArray(data) ? data : [];
       try {
-        const user = await api.get('/me');
+        // One page load means one full guard in this multi-page app, so these
+        // three go out together rather than one waiting for the next. Only the
+        // session can fail the guard; a missing principal list is tolerated.
+        const [user, princData, clientPrincData] = await Promise.all([
+          api.get('/me'),
+          api.get('/me/principals').catch(() => null),
+          api.get('/me/client-principals').catch(() => null),
+        ]);
         this.user = user;
-
-        // Fetch organization principals
-        try {
-          const princData = await api.get('/me/principals');
-          this.principals = Array.isArray(princData?.items) ? princData.items : (Array.isArray(princData) ? princData : []);
-        } catch (_) {
-          this.principals = [];
-        }
-
-        // Fetch client principals
-        try {
-          const clientPrincData = await api.get('/me/client-principals');
-          this.clientPrincipals = Array.isArray(clientPrincData?.items) ? clientPrincData.items : (Array.isArray(clientPrincData) ? clientPrincData : []);
-        } catch (_) {
-          this.clientPrincipals = [];
-        }
+        this.principals = asItems(princData);
+        this.clientPrincipals = asItems(clientPrincData);
 
         // Validate and reconcile active principal against all principals
         const all = this.getAllPrincipals();
@@ -155,6 +150,9 @@ class AuthService {
 
   async login(email, password) {
     const res = await api.post('/identity/login', { email, password });
+    // The token that authorised this request was derived from the pre-login
+    // session, so it must not survive into the signed-in one.
+    clearCsrfToken();
     await this.init(true);
     return {
       res,

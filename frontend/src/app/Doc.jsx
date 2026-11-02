@@ -98,6 +98,10 @@ export default function Doc({ body, scripts = [] }) {
       logoutBtn.className = 'ib'
       logoutBtn.textContent = 'Log out'
       logoutBtn.onclick = () => {
+        // The server has to end the session before /login will stay put, so the
+        // wait is real; saying so beats a button that looks dead.
+        logoutBtn.disabled = true
+        logoutBtn.textContent = 'Signing out…'
         auth.logout()
       }
       const dr = target.querySelector('#dr')
@@ -167,7 +171,10 @@ export default function Doc({ body, scripts = [] }) {
   }, [authorized, body, scripts])
 
   if (!authorized) {
-    return <div style={{ minHeight: '100vh', background: 'var(--ink, #141414)' }} />
+    // Still no protected markup until the guard resolves, but the page's own
+    // background keeps the wait plain instead of painting a black block over
+    // the viewport on every navigation.
+    return <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f8f8)' }} />
   }
 
   return <div ref={ref} />

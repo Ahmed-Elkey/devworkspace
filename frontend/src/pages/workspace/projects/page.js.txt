@@ -54,6 +54,17 @@ var teamLoadError = false;
 
 async function loadTeam() {
   if (!activeOrgId) return;
+  // Listing the team is an administrator read. Asking for it as a plain member
+  // buys a refusal, a round trip, and a banner about a thing that was never
+  // available to them in the first place.
+  var actor = auth.getActivePrincipal ? auth.getActivePrincipal() : null;
+  if (actor && actor.role === 'MEMBER') {
+    var locked = $('pm');
+    if (locked) {
+      locked.innerHTML = '<option value="" disabled selected>An administrator assigns the manager</option>';
+    }
+    return;
+  }
   try {
     teamLoadError = false;
     var res = await (H.fetchAllPages ? H.fetchAllPages('/organizations/' + activeOrgId + '/team') : api.get('/organizations/' + activeOrgId + '/team?limit=100'));

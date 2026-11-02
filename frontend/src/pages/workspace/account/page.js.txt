@@ -92,9 +92,11 @@ async function loadImage() {
   try {
     currentImage = await api.get('/me/image');
     imageRevision = currentImage ? (currentImage.revision || 1) : 1;
+    if (auth.user) H.noteAvatar(auth.user.id, currentImage && currentImage.asset_id);
     renderUserAvatar(currentImage);
   } catch (err) {
     console.error('Failed to load profile image:', err);
+    if (auth.user) H.noteAvatar(auth.user.id, null);
   }
 }
 
@@ -371,6 +373,7 @@ if (up) {
       var saved = await api.patch('/me/image', { asset_id: uploadRecord.asset_id || uploadRecord.id }, { revision: imageRevision });
       imageRevision = saved.revision || (imageRevision + 1);
       currentImage = { asset_id: uploadRecord.asset_id || uploadRecord.id, revision: imageRevision };
+      if (auth.user) H.noteAvatar(auth.user.id, currentImage.asset_id);
       renderUserAvatar(currentImage);
 
       if (pv) pv.textContent = '';
@@ -410,6 +413,7 @@ if (rm) {
       var saved = await api.patch('/me/image', { asset_id: null }, { revision: imageRevision });
       imageRevision = saved.revision || (imageRevision + 1);
       currentImage = { asset_id: null, revision: imageRevision };
+      if (auth.user) H.noteAvatar(auth.user.id, null);
       renderUserAvatar(null);
       if (pv) pv.textContent = '';
     } catch (err) {

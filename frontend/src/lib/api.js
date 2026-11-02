@@ -90,6 +90,30 @@ export function registerPrincipalProvider(fn) {
 let cachedCsrfToken = null;
 let csrfFetchPromise = null;
 
+const CSRF_STORAGE_KEY = 'devworkspace_csrf_token';
+
+// A token is valid for as long as the session it is derived from, and this is a
+// multi-page app: every navigation rebuilds this module from scratch, so without
+// a per-tab copy each page spends a round trip re-fetching the same token before
+// its first save. sessionStorage, not localStorage, because the token belongs to
+// one session in one tab.
+function readStoredCsrf() {
+  try {
+    return sessionStorage.getItem(CSRF_STORAGE_KEY);
+  } catch (_) {
+    return null;
+  }
+}
+
+function writeStoredCsrf(token) {
+  try {
+    if (token) sessionStorage.setItem(CSRF_STORAGE_KEY, token);
+    else sessionStorage.removeItem(CSRF_STORAGE_KEY);
+  } catch (_) {}
+}
+
+cachedCsrfToken = readStoredCsrf();
+
 /**
  * Fetch CSRF token from /api/v1/identity/csrf.
  */
@@ -112,6 +136,7 @@ export async function getCsrfToken(forceRefresh = false) {
       }
       const data = await res.json();
       cachedCsrfToken = data.token;
+      writeStoredCsrf(cachedCsrfToken);
       return cachedCsrfToken;
     } finally {
       csrfFetchPromise = null;
@@ -126,6 +151,7 @@ export async function getCsrfToken(forceRefresh = false) {
  */
 export function clearCsrfToken() {
   cachedCsrfToken = null;
+  writeStoredCsrf(null);
 }
 
 /**

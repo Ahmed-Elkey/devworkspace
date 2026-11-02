@@ -346,6 +346,31 @@ export function getRowMeta(el) {
 
 // --- SHARED HEADER LOADER ---
 
+const AVATAR_MEMO_KEY = 'devworkspace_avatar_asset';
+
+// Most accounts never upload a profile picture, and the header runs on every
+// page of this multi-page app, so the probe used to answer "no picture" by
+// failing with a 404 once per navigation. One tab asks once per account and
+// remembers; the account page updates the note when a picture is saved or
+// removed, and another account signing in is a different key and asks again.
+export function noteAvatar(userId, assetId) {
+  try {
+    sessionStorage.setItem(AVATAR_MEMO_KEY, `${userId}|${assetId || 'none'}`);
+  } catch (_) {}
+}
+
+function rememberedAvatar(userId) {
+  let stored = null;
+  try {
+    stored = sessionStorage.getItem(AVATAR_MEMO_KEY);
+  } catch (_) {
+    return null;
+  }
+  if (!stored) return null;
+  const [owner, asset] = stored.split('|');
+  return owner === userId ? asset : null;
+}
+
 export async function loadHeader() {
   const activePrincipal = auth.getActivePrincipal();
   const orgId = auth.activeOrgId;
@@ -380,7 +405,18 @@ export async function loadHeader() {
 
       // Check if user has an uploaded profile photo
       try {
-        const imgRef = await api.get('/me/image');
+        let imgRef = null;
+        const known = rememberedAvatar(user.id);
+        if (known === null) {
+          try {
+            imgRef = await api.get('/me/image');
+          } catch (_) {
+            imgRef = null;
+          }
+          noteAvatar(user.id, imgRef?.asset_id);
+        } else if (known !== 'none') {
+          imgRef = { asset_id: known };
+        }
         if (imgRef && imgRef.asset_id) {
           av.style.backgroundImage = `url('/api/v1/me/image/content?v=${encodeURIComponent(imgRef.asset_id)}')`;
           av.style.backgroundSize = 'cover';
@@ -649,6 +685,7 @@ if (typeof window !== 'undefined') {
     rowAttrs,
     getRowMeta,
     loadHeader,
+    noteAvatar,
     fetchAllPages,
     askConfirm,
     renderCapNotice,

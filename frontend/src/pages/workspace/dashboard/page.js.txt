@@ -40,45 +40,40 @@ async function loadDashboard() {
   var openReviews = [];
   var notifications = [];
 
-  // 1. Fetch clients for name resolution (single request)
-  try {
-    var cRes = await (H.fetchAllPages ? H.fetchAllPages('/organizations/' + activeOrgId + '/clients') : api.get('/organizations/' + activeOrgId + '/clients?limit=100'));
-    (cRes.items || []).forEach(function(c) {
-      clientsMap[c.id] = c.name;
+  // 1-5. Each widget is an independent read, so they are fetched together.
+  // Waiting for one before starting the next left the page visibly empty for the
+  // length of five round trips.
+  var readJson = function (path, label) {
+    return api.get(path).catch(function (err) {
+      console.error('Failed to load ' + label, err);
+      return null;
     });
-  } catch (_) {}
+  };
+  var clientsReq = H.fetchAllPages
+    ? H.fetchAllPages('/organizations/' + activeOrgId + '/clients').catch(function () { return null; })
+    : readJson('/organizations/' + activeOrgId + '/clients?limit=100', 'clients');
 
-  // 2. Fetch projects from /dashboard
-  try {
-    var pRes = await api.get('/organizations/' + activeOrgId + '/dashboard?limit=10');
-    projects = pRes.items || [];
-  } catch (err) {
-    console.error('Failed to load dashboard projects', err);
-  }
+  var results = await Promise.all([
+    clientsReq,
+    readJson('/organizations/' + activeOrgId + '/dashboard?limit=10', 'dashboard projects'),
+    readJson('/organizations/' + activeOrgId + '/my-tasks?limit=5', 'my-tasks'),
+    readJson('/organizations/' + activeOrgId + '/reviews?status=OPEN&limit=5', 'reviews'),
+    readJson('/organizations/' + activeOrgId + '/notifications?limit=5', 'activity')
+  ]);
 
-  // 3. Fetch user assigned tasks from /my-tasks
-  try {
-    var tRes = await api.get('/organizations/' + activeOrgId + '/my-tasks?limit=5');
-    myTasks = tRes.items || [];
-  } catch (err) {
-    console.error('Failed to load my-tasks', err);
-  }
+  var cRes = results[0];
+  var pRes = results[1];
+  var tRes = results[2];
+  var rRes = results[3];
+  var nRes = results[4];
 
-  // 4. Fetch open reviews from /reviews
-  try {
-    var rRes = await api.get('/organizations/' + activeOrgId + '/reviews?status=OPEN&limit=5');
-    openReviews = rRes.items || [];
-  } catch (err) {
-    console.error('Failed to load reviews', err);
-  }
-
-  // 5. Fetch recent activity from /notifications
-  try {
-    var nRes = await api.get('/organizations/' + activeOrgId + '/notifications?limit=5');
-    notifications = nRes.items || [];
-  } catch (err) {
-    console.error('Failed to load activity', err);
-  }
+  ((cRes && cRes.items) || []).forEach(function (c) {
+    clientsMap[c.id] = c.name;
+  });
+  projects = (pRes && pRes.items) || [];
+  myTasks = (tRes && tRes.items) || [];
+  openReviews = (rRes && rRes.items) || [];
+  notifications = (nRes && nRes.items) || [];
 
   // --- RENDER WIDGETS ---
 
