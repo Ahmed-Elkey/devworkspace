@@ -4,6 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "https://devworkspace-api-dsdsdsasdfhasf-9201s-projects.vercel.app/api/$1" },
     { "source": "/", "destination": "/index.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
     { "source": "/login", "destination": "/login.html" },
