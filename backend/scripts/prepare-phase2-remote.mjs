@@ -52,7 +52,7 @@ for (const key of ['api', 'identity', 'dispatch', 'worker', 'mailKey'])
   if (!/^[a-f0-9]{64}$/.test(credentials[key] ?? ''))
     throw new Error('Invalid remote credential record');
 
-const admin = new Client({ connectionString: target.href });
+const admin = new Client({ connectionString: target.href, ssl: { rejectUnauthorized: false } });
 await admin.connect();
 for (const role of [
   'owner',
@@ -101,9 +101,12 @@ if (
 if (!existingDatabase.rowCount)
   await admin.query(`CREATE DATABASE ${database} OWNER dw2_owner`);
 await admin.query('GRANT dw2_resolver,dw2_dispatch_owner,dw2_communications TO dw2_owner');
+// The remote admin role is not a superuser, so it cannot SET ROLE into
+// dw2_owner during migrations without explicit membership.
+await admin.query(`GRANT dw2_owner TO "${target.username}"`);
 await admin.end();
 target.pathname = '/' + database;
-const db = new Client({ connectionString: target.href });
+const db = new Client({ connectionString: target.href, ssl: { rejectUnauthorized: false } });
 await db.connect();
 await db.query("SELECT pg_advisory_lock(hashtext('devworkspace-phase2-migrations'))");
 if (
