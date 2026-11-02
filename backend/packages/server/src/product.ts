@@ -50,14 +50,18 @@ export function productConfig(env: NodeJS.ProcessEnv) {
       'Invalid Phase 2 configuration: ' +
         result.error.issues.map((x) => x.path.join('.')).join(','),
     );
+  // PRODUCT_ALLOW_REMOTE=true opts in to hosted PostgreSQL (e.g. the Vercel
+  // serverless deployment against a remote database) instead of the local
+  // native infrastructure on 127.0.0.1. Protocol and restricted-role checks
+  // (dw2_api / dw2_identity) always apply; default behavior is unchanged.
+  const allowRemote = env.PRODUCT_ALLOW_REMOTE === 'true';
   for (const [key, value] of Object.entries(result.data))
     if (key.endsWith('_URL')) {
       const u = new URL(value);
       if (
         u.username !== (key === 'PRODUCT_API_URL' ? 'dw2_api' : 'dw2_identity') ||
         u.protocol !== 'postgresql:' ||
-        u.hostname !== '127.0.0.1' ||
-        u.pathname !== '/devworkspace_phase2'
+        (!allowRemote && (u.hostname !== '127.0.0.1' || u.pathname !== '/devworkspace_phase2'))
       )
         throw new Error('Restricted product role required');
     }
