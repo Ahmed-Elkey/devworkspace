@@ -58,6 +58,9 @@ export function start(options = {}) {
       auth: context,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
+      // Serverless deployments have no gateway to reach. Give up after a few
+      // attempts instead of retrying forever; the catch-up poll below covers it.
+      reconnectionAttempts: 3,
     })
     socket.on('connect', () => notify({ reason: 'reconnect' }))
     socket.on('notifications.changed', () => notify({ reason: 'notifications' }))
