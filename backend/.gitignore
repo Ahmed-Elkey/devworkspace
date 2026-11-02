@@ -15,3 +15,5 @@ playwright-report/
 .playwright-cli/
 
 *.zip
+.vercel
+.env*
