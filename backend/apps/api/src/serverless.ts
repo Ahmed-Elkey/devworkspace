@@ -25,11 +25,14 @@ export default async function handler(serverlessReq: any, serverlessRes: any) {
   const app = await appPromise;
   if (!expressHandler) expressHandler = toNodeHandler(app) as never;
 
+  // Express does not invoke next() for handled routes; it ends the response
+  // instead. Resolve on response close so the function terminates exactly when
+  // the response is finalized (success, error, or client disconnect).
   await new Promise<void>((resolve) => {
-    (expressHandler as unknown as (req: any, res: any, next: () => void) => void)(
+    serverlessRes.on('close', resolve);
+    (expressHandler as unknown as (req: any, res: any) => void)(
       serverlessReq,
       serverlessRes,
-      () => resolve(),
     );
   });
 }
