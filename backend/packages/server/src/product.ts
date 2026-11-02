@@ -61,7 +61,8 @@ export function productConfig(env: NodeJS.ProcessEnv) {
       if (
         u.username !== (key === 'PRODUCT_API_URL' ? 'dw2_api' : 'dw2_identity') ||
         u.protocol !== 'postgresql:' ||
-        (!allowRemote && (u.hostname !== '127.0.0.1' || u.pathname !== '/devworkspace_phase2'))
+        (!allowRemote && u.hostname !== '127.0.0.1') ||
+        u.pathname !== '/devworkspace_phase2'
       )
         throw new Error('Restricted product role required');
     }
