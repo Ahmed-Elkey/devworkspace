@@ -61,6 +61,20 @@ function discardInactiveStyles(exceptHref) {
   }
 }
 
+// Called at SPA navigation start. It must clear both the DOM links and their
+// bookkeeping entries; removing only the link leaves a stale map entry that
+// makes the destination think its CSS is still mounted.
+export function clearRouteStyles() {
+  if (flushTimer) clearTimeout(flushTimer)
+  flushTimer = null
+  loading = 0
+  for (const [, entry] of LINKS) {
+    if (entry.timer) clearTimeout(entry.timer)
+    entry.link.remove()
+  }
+  LINKS.clear()
+}
+
 export function usePageStylesheet(href) {
   useLayoutEffect(() => {
     if (!href) return undefined

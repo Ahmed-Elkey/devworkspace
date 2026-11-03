@@ -6,6 +6,7 @@ import React, { Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES, ROUTE_TITLES } from './routes.jsx'
 import { setNavigator } from './navigate.js'
+import { clearRouteStyles } from './PageStylesheet.jsx'
 import ErrorBoundary from './ErrorBoundary.jsx'
 
 // Nothing matched an internal link: keep the URL honest and show the designed
@@ -117,7 +118,7 @@ function LinkInterceptor() {
       // Remove the current route's global stylesheet at the instant navigation
       // starts, not later when the lazy destination component mounts. This
       // prevents even a single painted frame of old markup with new styles.
-      document.querySelectorAll('link[data-dw-css]').forEach((link) => link.remove())
+      clearRouteStyles()
       navigate(next)
     }
     document.addEventListener('click', onClick, true)
