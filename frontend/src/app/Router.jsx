@@ -114,6 +114,10 @@ function LinkInterceptor() {
       const next = path + url.search + url.hash
       if (next === window.location.pathname + window.location.search + window.location.hash) return
       event.preventDefault()
+      // Remove the current route's global stylesheet at the instant navigation
+      // starts, not later when the lazy destination component mounts. This
+      // prevents even a single painted frame of old markup with new styles.
+      document.querySelectorAll('link[data-dw-css]').forEach((link) => link.remove())
       navigate(next)
     }
     document.addEventListener('click', onClick, true)
