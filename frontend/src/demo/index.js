@@ -1,9 +1,14 @@
 // Answers requests in the browser when the site is built as the offline demo, so
 // nothing ever leaves the tab. The build flag decides it: a normal build talks to
 // the real API, a demo build is self-contained.
-import { problem, read, signOut, signedInAs, signIn, store, write } from './store.js'
+import { preloadDemoAccount, problem, read, signOut, signedInAs, signIn, store, write } from './store.js'
 
 export const demoMode = import.meta.env.VITE_DEMO === '1'
+
+export async function warmDemoAccount(email) {
+  if (!demoMode) return null
+  return preloadDemoAccount(email)
+}
 
 const CSRF = 'offline-demo-csrf'
 const NO_SIGNUP = 'This is a demo: sign in with one of the accounts listed on this page.'

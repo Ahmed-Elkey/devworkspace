@@ -5,6 +5,7 @@ import { usePageStylesheet } from '../../app/PageStylesheet.jsx'
 import { useBoxEnhance, AuthStage, busy } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
 import { DEMO_ACCOUNTS, DEMO_PASSWORD } from '../../demo/accounts.js'
+import { demoMode, warmDemoAccount } from '../../demo/index.js'
 import { navigate } from '../../app/navigate.js'
 
 function LoginApp() {
@@ -27,6 +28,10 @@ function LoginApp() {
     if (passwordInput) passwordInput.value = DEMO_PASSWORD
     setPicked(account.email)
     setShowError(false)
+    // The production demo is frontend-only. Warm this role's recorded data
+    // while the visitor is reading the form, so sign-in and first dashboard
+    // paint have no API or data-loading wait.
+    if (demoMode) void warmDemoAccount(account.email)
   }
 
   useEffect(() => {
@@ -51,6 +56,7 @@ function LoginApp() {
       if (emailInput) emailInput.value = 'demo@agency.com'
       if (passwordInput) passwordInput.value = DEMO_PASSWORD
       setPicked('demo@agency.com')
+      if (demoMode) void warmDemoAccount('demo@agency.com')
     }
 
     // If already authenticated, redirect to workspace or onboarding

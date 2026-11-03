@@ -62,6 +62,15 @@ async function dataset(email) {
   return current
 }
 
+// Start loading a role's recorded responses as soon as it is selected on the
+// sign-in screen. By the time the visitor presses Sign in, the dashboard data
+// is already in memory rather than waiting on the first protected request.
+export async function preloadDemoAccount(email) {
+  const address = String(email || '').trim().toLowerCase()
+  if (!DEMO_ACCOUNTS.some((account) => account.email === address)) return null
+  return dataset(address)
+}
+
 function persist() {
   if (!current) return
   try {
