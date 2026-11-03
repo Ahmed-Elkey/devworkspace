@@ -6,6 +6,10 @@ import { useEffect, useRef } from 'react'
 // navigate / → /login and the auth page came out washed out. ?url keeps the
 // 286KB sheet out of the JS; the <link> mounts with this route and unmounts
 // when it leaves (pageStylesheet below).
+// This normal import lets Vite preload the route stylesheet before the lazy
+// landing component is rendered. The URL import below is still used by the
+// lifecycle manager to remove the sheet when navigating away.
+import './styles/base.css'
 import baseCssUrl from './styles/base.css?url'
 import { usePageStylesheet } from './app/PageStylesheet.jsx'
 import Sprite from './components/Sprite.jsx'

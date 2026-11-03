@@ -12,9 +12,41 @@
 // A refcount keyed by href lets several routes share one stylesheet (acct.css
 // serves five workspace pages, main.css dozens) without racing removal: the
 // <link> disappears only when the last page using it has unmounted.
+//
+// One more rule: the outgoing page's stylesheet is NOT removed while the
+// incoming page's stylesheet is still downloading. Tearing the old one down
+// first left the new page unstyled for a moment — a white flash on every
+// navigation, which reads as a glitch.
 import { useLayoutEffect } from 'react'
 
-const LINKS = new Map() // href -> { count, link }
+const LINKS = new Map() // href -> { count, link, loaded }
+let loading = 0
+let flushTimer = null
+
+function existingStylesheet(href) {
+  const target = new URL(href, document.baseURI).href
+  return [...document.querySelectorAll('link[rel="stylesheet"]')].find(
+    (link) => new URL(link.href, document.baseURI).href === target,
+  )
+}
+
+function scheduleFlush() {
+  if (flushTimer) return
+  flushTimer = setTimeout(flush, 0)
+}
+
+function flush() {
+  flushTimer = null
+  // A stylesheet is still on its way: keep the old one up so the page that is
+  // arriving never shows up unstyled.
+  if (loading > 0) return
+  for (const [href, entry] of [...LINKS]) {
+    if (entry.count > 0) continue
+    if (entry.timer) clearTimeout(entry.timer)
+    entry.link.remove()
+    LINKS.delete(href)
+  }
+}
 
 export function usePageStylesheet(href) {
   useLayoutEffect(() => {
@@ -22,22 +54,44 @@ export function usePageStylesheet(href) {
 
     let entry = LINKS.get(href)
     if (!entry) {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
+      // Vite preloads a normal CSS import before resolving a lazy page
+      // module. Reuse that link when it is available: the route then paints
+      // styled on its first visit instead of waiting for a second request
+      // started from this hook. Subsequent visits create a fresh link after
+      // the old route has released its stylesheet.
+      const link = existingStylesheet(href) || document.createElement('link')
+      const alreadyLoaded = Boolean(link.sheet)
+      if (!alreadyLoaded) {
+        link.rel = 'stylesheet'
+        link.href = href
+      }
       link.dataset.dwCss = href
-      link.href = href
-      document.head.appendChild(link)
-      entry = { count: 0, link }
+
+      entry = { count: 0, link, loaded: alreadyLoaded, timer: null }
       LINKS.set(href, entry)
+
+      const ready = () => {
+        if (entry.loaded) return
+        entry.loaded = true
+        loading -= 1
+        if (entry.timer) clearTimeout(entry.timer)
+        entry.timer = null
+        scheduleFlush()
+      }
+      if (!alreadyLoaded) {
+        loading += 1
+        link.addEventListener('load', ready)
+        link.addEventListener('error', ready)
+        // A stylesheet that never answers must not pin the old one forever.
+        entry.timer = setTimeout(ready, 4000)
+        if (!link.isConnected) document.head.appendChild(link)
+      }
     }
     entry.count += 1
 
     return () => {
       entry.count -= 1
-      if (entry.count === 0) {
-        LINKS.delete(href)
-        entry.link.remove()
-      }
+      scheduleFlush()
     }
   }, [href])
 }

@@ -48,8 +48,15 @@ export default function Header() {
       const curEl = ul.querySelector('[aria-current]') || links[0]
       function place(a) {
         links.forEach(l => l.classList.toggle('on', l === a))
-        ind.style.width = a.offsetWidth + 'px'
-        ind.style.transform = 'translateX(' + a.offsetLeft + 'px)'
+        // `offsetLeft` is relative to the link's offset parent, which can be
+        // its wrapping <li>, while the indicator is positioned relative to
+        // the <ul>. That mixed coordinate system shifted the lime pill over
+        // the Product label on some browsers. Measure both elements in the
+        // same viewport coordinate system instead.
+        const item = a.getBoundingClientRect()
+        const list = ul.getBoundingClientRect()
+        ind.style.width = item.width + 'px'
+        ind.style.transform = 'translateX(' + (item.left - list.left) + 'px)'
       }
       function syncInd() { place(hov || curEl) }
       nav.classList.add('has-ind'); syncInd()
@@ -65,9 +72,29 @@ export default function Header() {
       })
       const onResizeInd = () => { if (ind && document.contains(ind)) syncInd() }
       window.addEventListener('resize', onResizeInd)
+      // On a client-side return to this route, the route stylesheet can be
+      // applied immediately after this effect. Observing the list catches
+      // that layout change and prevents the indicator from keeping a position
+      // measured against the browser's unstyled default list padding.
+      const listResizeObserver = new ResizeObserver(onResizeInd)
+      listResizeObserver.observe(ul)
+      links.forEach((link) => listResizeObserver.observe(link))
+      // The stylesheet is preloaded with the lazy route, but browsers may
+      // commit it one frame after React mounts. A short follow-up covers that
+      // commit (and late web-font metrics) without relying on a fixed offset.
+      const alignmentFrame = requestAnimationFrame(onResizeInd)
+      const alignmentTimer = setTimeout(onResizeInd, 120)
+      const fontMetricTimer = setTimeout(onResizeInd, 700)
       const m01 = new MutationObserver(() => { if (ind && document.contains(ind)) syncInd() })
       m01.observe(nav, { attributes: true, attributeFilter: ['data-state'] })
-      cleanups.push(() => { window.removeEventListener('resize', onResizeInd); m01.disconnect() })
+      cleanups.push(() => {
+        window.removeEventListener('resize', onResizeInd)
+        listResizeObserver.disconnect()
+        cancelAnimationFrame(alignmentFrame)
+        clearTimeout(alignmentTimer)
+        clearTimeout(fontMetricTimer)
+        m01.disconnect()
+      })
       let fontsThen = null
       if (document.fonts && document.fonts.ready) {
         fontsThen = () => { if (ind && document.contains(ind)) syncInd() }

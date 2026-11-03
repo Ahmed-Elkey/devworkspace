@@ -1,4 +1,5 @@
 import React from 'react'
+import '././dashboard.css'
 import cssUrl from '././dashboard.css?url'
 import Doc from '../../../app/Doc.jsx'
 import { usePageStylesheet } from '../../../app/PageStylesheet.jsx'
