@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react'
 // This normal import lets Vite preload the route stylesheet before the lazy
 // landing component is rendered. The URL import below is still used by the
 // lifecycle manager to remove the sheet when navigating away.
+import './styles/base.css'
 import baseCssUrl from './styles/base.css?url'
 import { usePageStylesheet } from './app/PageStylesheet.jsx'
 import Sprite from './components/Sprite.jsx'

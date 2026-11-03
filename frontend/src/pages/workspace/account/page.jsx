@@ -1,4 +1,5 @@
 import React from 'react'
+import './../acct.css'
 import cssUrl from './../acct.css?url'
 import Doc from '../../../app/Doc.jsx'
 import { usePageStylesheet } from '../../../app/PageStylesheet.jsx'
