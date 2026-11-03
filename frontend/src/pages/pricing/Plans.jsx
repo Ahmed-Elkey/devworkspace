@@ -41,8 +41,6 @@ export default function Plans() {
         if (t && t.firstChild && t.firstChild.nodeType === 3) t.firstChild.nodeValue = text
         var s = t && t.querySelector('small')
         if (s) s.textContent = next ? 'per planner / year — 2 months free' : 'per planner / month'
-        var a = c.querySelector('a.btn')
-        if (a) a.href = '/register?plan=' + c.dataset.planCard + '&billing=' + (next ? 'yearly' : 'monthly')
       })
       if (bm && by) {
         bm.classList.toggle('on', !next); by.classList.toggle('on', next)
@@ -122,7 +120,7 @@ export default function Plans() {
                 return inh ? <li className="inh" key={j}>{t}</li> : <li key={j}>{t}</li>
               })}
             </ul>
-            <a className="btn" href={'/register?plan=' + p.key + '&billing=monthly'} data-plan={p.key}>Start 14-day trial</a>
+            <a className="btn" href="/login" data-plan={p.key}>Explore demo</a>
           </article>
         ))}
       </section>

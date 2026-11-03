@@ -148,7 +148,7 @@ export default function Header() {
               <li><a href="/" aria-current="page">Product</a></li>
               <li><a href="/pricing">Pricing</a></li>
             </ul></div>
-            <a className="go" href="/login">Start Free<svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+            <a className="go" href="/login">View Demo<svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
           </div>
         </nav>
       </header>

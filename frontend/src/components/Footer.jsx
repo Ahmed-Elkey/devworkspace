@@ -37,7 +37,7 @@ export default function Footer() {
       <div className="ft" ref={ftRef}>
         <div className="ft-top">
           <p className="ft-h">Organize your projects <em>in time.</em></p>
-          <a className="ft-go" href="/login">Start free<svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
+          <a className="ft-go" href="/login">View demo<svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
         </div>
         <nav className="ft-tl" aria-label="Footer">
           <div className="ft-days" aria-hidden="true">
@@ -47,7 +47,7 @@ export default function Footer() {
           </div>
           <div className="ft-row"><a className="ft-bar b1" href="/" aria-current="page" style={{ '--i': 0, '--s': 1, '--e': 7, '--ms': 1, '--me': 6 }}>Product</a></div>
           <div className="ft-row"><a className="ft-bar b2" href="/pricing" style={{ '--i': 1, '--s': 5, '--e': 12, '--ms': 3, '--me': 8 }}>Pricing</a></div>
-          <div className="ft-row"><a className="ft-bar b3" href="/pricing#plans" style={{ '--i': 2, '--s': 9, '--e': 15, '--ms': 2, '--me': 7 }}>Start your trial</a></div>
+          <div className="ft-row"><a className="ft-bar b3" href="/login" style={{ '--i': 2, '--s': 9, '--e': 15, '--ms': 2, '--me': 7 }}>Explore demo</a></div>
           <i className="ft-now" aria-hidden="true" />
         </nav>
         <div className="ft-bot"><span>© <span id="ft-y">{state.year}</span> Devworkspace</span><button type="button" className="ft-up" aria-label="Back to top" onClick={onUp}>↑</button></div>

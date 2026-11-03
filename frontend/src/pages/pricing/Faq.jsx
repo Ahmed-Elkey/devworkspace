@@ -1,10 +1,10 @@
 const QA = [
-  ['Do I need a credit card to start?', 'No. Start the 14-day trial without a card and add one when you decide to stay.'],
-  ['Who counts as a planner?', 'Anyone who creates or edits tasks on your calendar. Clients and reviewers who only view, comment or approve are guests and are free.'],
-  ['Can I change plans later?', 'Yes. Move up or down at any time; the change applies from your next billing date.'],
-  ['What happens when the trial ends?', 'Your projects stay saved. Choose a plan to keep editing, or export your files first.'],
-  ['Do guests ever count toward my bill?', 'No. Clients, vendors and reviewers who view, comment or approve are always free, on every plan, with no cap on how many you invite.'],
-  ['Can I try every plan before paying?', 'Yes. Every plan starts with a 14-day free trial, and no credit card is required to begin.']
+  ['Is this a real subscription?', 'No. This is an interactive portfolio demo, so there is no checkout, payment, or subscription.'],
+  ['Do I need an account?', 'No new account is needed. Open the demo login and choose any pre-filled role to explore the product.'],
+  ['What can I explore?', 'The demo includes workspace, project delivery, and client portal screens with realistic sample data.'],
+  ['Can I change the sample data?', 'Yes. Most product interactions work locally in your browser and reset when the demo session is cleared.'],
+  ['Are the prices real?', 'They are interface sample content used to demonstrate the pricing screen; no plan can be purchased here.'],
+  ['Which roles are available?', 'Owner, manager, designer, contributor, viewer, and client portal roles are ready to explore.']
 ]
 
 /* FAQ: static markup only — <details> behaves natively, animations are CSS-driven */
@@ -13,8 +13,8 @@ export default function Faq() {
     <section className="faq rv" aria-labelledby="faq-h">
       <div className="faq-side">
         <span className="tag">FAQ</span>
-        <h2 id="faq-h">Questions about <span className="hl">pricing</span></h2>
-        <p className="faq-note">Short answers, no fine print. Still unsure? Every plan starts with a free trial.</p>
+        <h2 id="faq-h">About this <span className="hl">demo</span></h2>
+        <p className="faq-note">Everything here is for portfolio exploration—no payment details or subscription required.</p>
         <p className="faq-count"><b id="faq-n">6</b> answers</p>
         <div className="faq-art" aria-hidden="true"><span className="fb b1">?</span><span className="fb b2">$</span></div>
       </div>
