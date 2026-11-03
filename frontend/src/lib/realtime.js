@@ -12,6 +12,10 @@ let socket = null
 let subscribedProject = null
 const watchers = new Set()
 let everConnected = false
+// Serverless deployments have no socket gateway at all: every handshake ends
+// in a 404 and every retry paints the console red. One failed handshake is
+// enough to know there is nothing to talk to.
+let gatewayMissing = false
 
 function handshake(projectId) {
   const principal = auth.getActivePrincipal()
@@ -54,6 +58,8 @@ export function start(options = {}) {
   // The offline demo has no server to tell it anything changed, and the pages it
   // shows are edited by the visitor alone.
   if (demoMode) return null
+  // No gateway on this deployment: trying again only repeats the same 404.
+  if (gatewayMissing) return null
   const projectId = options.projectId || window.__DW_PROJECT_ID__ || null
   if (!socket) {
     const context = handshake(projectId)
@@ -70,6 +76,17 @@ export function start(options = {}) {
     socket.on('connect', () => {
       everConnected = true
       notify({ reason: 'reconnect' })
+    })
+    socket.on('connect_error', (err) => {
+      // The first handshake failed and nothing ever connected: this deployment
+      // has no gateway. Stop here instead of letting every navigation start a
+      // fresh round of failed handshakes.
+      if (everConnected) return
+      gatewayMissing = true
+      try {
+        socket.io.opts.reconnection = false
+        socket.disconnect()
+      } catch (_) {}
     })
     socket.on('notifications.changed', () => notify({ reason: 'notifications' }))
     socket.on('state.changed', (payload) => notify({ reason: 'project', ...payload }))
@@ -89,6 +106,21 @@ export function start(options = {}) {
     }, 30000)
   }
   return socket
+}
+
+/** Close the live feed and forget it (sign-out, or a page that must not talk to it). */
+export function stop() {
+  if (socket) {
+    try { socket.disconnect() } catch (_) {}
+    socket = null
+  }
+  subscribedProject = null
+  everConnected = false
+  gatewayMissing = false
+  if (start.timer) {
+    clearInterval(start.timer)
+    start.timer = null
+  }
 }
 
 export function onChange(handler) {

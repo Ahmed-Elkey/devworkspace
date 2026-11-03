@@ -122,7 +122,9 @@ async function loadImage() {
     if (auth.user) H.noteAvatar(auth.user.id, currentImage && currentImage.asset_id);
     renderUserAvatar(currentImage);
   } catch (err) {
-    console.error('Failed to load profile image:', err);
+    // No profile picture is the normal case for most accounts.
+    if (err && err.status === 404) console.info('No profile picture set yet.');
+    else console.error('Failed to load profile image:', err);
     if (auth.user) H.noteAvatar(auth.user.id, null);
   }
 }

@@ -11,14 +11,21 @@ document.getElementById('back').onclick = () => history.length > 1 ? history.bac
 /* eye that follows the cursor + draggable ghost bar */
 (function(){
   var o=document.querySelector('.o'),ang=0,target=0,last=0,calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var alive=true;
   function setT(e){var r=o.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;target=Math.atan2(e.clientY-cy,e.clientX-cx)*180/Math.PI+90;last=performance.now()}
   addEventListener('pointermove',setT,{passive:true});
   (function loop(t){
-    if(t-last>2200)target+=.35;
+    if(!alive)return;
+    if(!calm&&t-last>2200)target+=.35;
     var d=((target-ang+540)%360)-180;ang+=d*.12;
     o.style.setProperty('--a',ang.toFixed(2)+'deg');
-    if(!calm||true)requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
   })(0);
+  // One document serves the whole session now: an animation loop that never
+  // stops would keep running (and keep touching a detached node) long after
+  // the visitor left this page.
+  var H=window.__DW_HELPERS__||{};
+  if(H.onPageCleanup)H.onPageCleanup(function(){alive=false;removeEventListener('pointermove',setT)});
   var gh=document.getElementById('gh'),rows=document.getElementById('rows'),say=document.getElementById('say'),tries=document.getElementById('tries'),n=0;
   if(!gh)return;
   var msgs=['Nothing here either.','That slot is taken.','Still not found.','Nope. Not scheduled.','Okay, try the dashboard?'];

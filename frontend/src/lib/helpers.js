@@ -344,6 +344,42 @@ export function getRowMeta(el) {
   };
 }
 
+// --- PAGE SCOPE ---
+//
+// The SPA keeps ONE document alive for the whole session, so anything a page
+// registers on window/document outlives the page unless somebody takes it back
+// down. Each page therefore gets a scope: helpers register their cleanup here
+// while the page is mounted, and leaving the page runs them. Without this a
+// page's loader kept running against the NEXT page's DOM and painted the wrong
+// widgets over it.
+
+let pageScope = { cleanups: [] }
+
+/** Start a fresh page scope. Anything left over from the previous page is disposed. */
+export function beginPageScope() {
+  endPageScope()
+  pageScope = { cleanups: [] }
+}
+
+/** Run everything the current page registered, then forget it. */
+export function endPageScope() {
+  const scope = pageScope
+  pageScope = { cleanups: [] }
+  for (const fn of scope.cleanups) {
+    try { fn() } catch (_) {}
+  }
+}
+
+/** Register a cleanup for the current page. Returns an unregister function. */
+export function onPageCleanup(fn) {
+  if (typeof fn !== 'function') return () => {}
+  pageScope.cleanups.push(fn)
+  return () => {
+    const i = pageScope.cleanups.indexOf(fn)
+    if (i !== -1) pageScope.cleanups.splice(i, 1)
+  }
+}
+
 // --- SHARED HEADER LOADER ---
 
 const AVATAR_MEMO_KEY = 'devworkspace_avatar_asset';
@@ -438,9 +474,14 @@ export async function loadHeader() {
 
   if (bell && dr && dl && orgId) {
     let items = [];
+    // The page may be left while the first read is still in flight, so the
+    // cleanup is registered before the await and the late-arriving listeners
+    // check the flag before attaching themselves.
+    let disposed = false;
     const readNotifications = async () => {
       try {
         const res = await api.get(`/organizations/${orgId}/notifications?limit=8`);
+        if (disposed) return;
         items = res?.items || [];
         const unreadCount = res?.unread || items.filter(n => !n.read_at).length;
         if (dot) dot.style.display = unreadCount > 0 ? '' : 'none';
@@ -462,7 +503,31 @@ export async function loadHeader() {
       }).join('');
     };
 
+    const onDocumentClick = (e) => {
+      if (!dr.hidden && !e.target.closest('#dr,#bell')) {
+        dr.hidden = true;
+        bell.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    const onDocumentKeydown = (e) => {
+      if (e.key === 'Escape' && !dr.hidden) {
+        dr.hidden = true;
+        bell.setAttribute('aria-expanded', 'false');
+        bell.focus();
+      }
+    };
+
+    // Both listeners live on the document, so they outlive the page that
+    // created them unless the page takes them back down again.
+    onPageCleanup(() => {
+      disposed = true;
+      document.removeEventListener('click', onDocumentClick);
+      document.removeEventListener('keydown', onDocumentKeydown);
+    });
+
     await readNotifications();
+    if (disposed) return;
 
     bell.onclick = () => {
       dr.hidden = !dr.hidden;
@@ -472,25 +537,15 @@ export async function loadHeader() {
       }
     };
 
-    document.addEventListener('click', (e) => {
-      if (!dr.hidden && !e.target.closest('#dr,#bell')) {
-        dr.hidden = true;
-        bell.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !dr.hidden) {
-        dr.hidden = true;
-        bell.setAttribute('aria-expanded', 'false');
-        bell.focus();
-      }
-    });
+    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('keydown', onDocumentKeydown);
 
     // The header is loaded on every signed-in page, so this is where the live
     // feed opens: the bell follows new notifications without a manual reload.
     realtime.start({ projectId: window.__DW_PROJECT_ID__ || null });
-    realtime.onChange(() => { void readNotifications(); });
+    // The watcher belongs to this page: without the disposer it stayed in the
+    // realtime set forever and every notification re-read every page's feed.
+    onPageCleanup(realtime.onChange(() => { void readNotifications(); }));
   }
 }
 
@@ -665,6 +720,14 @@ export { realtime };
 export function liveReload(load) {
   window.__DW_RELOAD__ = load;
   realtime.start({ projectId: window.__DW_PROJECT_ID__ || null });
+  // The loader belongs to the page that registered it. Left in place, it kept
+  // running against the NEXT page's DOM and rewrote its heading and widgets
+  // with this page's data.
+  onPageCleanup(() => {
+    if (window.__DW_RELOAD__ === load) {
+      try { delete window.__DW_RELOAD__ } catch (_) { window.__DW_RELOAD__ = undefined }
+    }
+  });
 }
 
 // --- INTERNAL LINK PREFETCH ---
@@ -731,11 +794,11 @@ if (typeof window !== 'undefined') {
     uploadMedia,
     realtime,
     prefetchInternalLinks,
+    beginPageScope,
+    endPageScope,
+    onPageCleanup,
     /** Re-run `load` whenever the API reports a change for this page. */
-    liveReload(load) {
-      window.__DW_RELOAD__ = load;
-      realtime.start({ projectId: window.__DW_PROJECT_ID__ || null });
-    }
+    liveReload,
   };
 
   const runPrefetch = () => {

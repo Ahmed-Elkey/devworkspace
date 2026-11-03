@@ -68,7 +68,10 @@ async function loadLogo() {
     logoRevision = currentLogo ? (currentLogo.revision || 1) : 1;
     renderOrgLogo(currentLogo);
   } catch (err) {
-    console.error('Failed to load org logo:', err);
+    // Most organizations have no logo yet. That is a normal answer, not a
+    // failure — logging it as an error made every visit look broken.
+    if (err && err.status === 404) console.info('No organization logo set yet.');
+    else console.error('Failed to load org logo:', err);
   }
 }
 
