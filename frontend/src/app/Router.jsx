@@ -2,7 +2,7 @@
 // every path change and own their cleanup, while the page stylesheet manager
 // keeps the outgoing design visible until the next one is ready.
 
-import React, { Suspense, startTransition, useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES, ROUTE_TITLES } from './routes.jsx'
 import { setNavigator } from './navigate.js'
@@ -18,7 +18,11 @@ function Inner() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    setNavigator((to, replace) => startTransition(() => navigate(to, { replace })))
+    // Do not keep the old route mounted while a new route's lazy module and
+    // global stylesheet are evaluated. Those styles can briefly reshape the
+    // old markup (which looks like a crash). A normal React update swaps to
+    // the small neutral loader until the next route is ready.
+    setNavigator((to, replace) => navigate(to, { replace }))
     return () => setNavigator(null)
   }, [navigate])
 
@@ -110,7 +114,7 @@ function LinkInterceptor() {
       const next = path + url.search + url.hash
       if (next === window.location.pathname + window.location.search + window.location.hash) return
       event.preventDefault()
-      startTransition(() => navigate(next))
+      navigate(next)
     }
     document.addEventListener('click', onClick, true)
     return () => document.removeEventListener('click', onClick, true)
