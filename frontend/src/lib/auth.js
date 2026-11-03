@@ -13,6 +13,10 @@ class AuthService {
     this.activeOrgId = localStorage.getItem(STORAGE_KEY_ORG) || null;
     this.initialized = false;
     this.initPromise = null;
+    // A login can start while the anonymous session probe made by /login is
+    // still in flight. Keep each probe versioned so that late anonymous
+    // answers can never erase a session that has just been established.
+    this.sessionVersion = 0;
 
     // Register active principal getter with API client
     registerPrincipalProvider(() => this.getActivePrincipalId());
@@ -68,6 +72,7 @@ class AuthService {
   }
 
   clearSession() {
+    this.sessionVersion += 1;
     this.user = null;
     this.principals = [];
     this.clientPrincipals = [];
@@ -79,7 +84,7 @@ class AuthService {
     clearCsrfToken();
   }
 
-  async init(force = false) {
+  async init(force = false, knownUser = null) {
     if (this.initialized && !force) {
       return {
         authenticated: Boolean(this.user),
@@ -94,7 +99,13 @@ class AuthService {
       return this.initPromise;
     }
 
-    this.initPromise = (async () => {
+    // A forced initialization happens immediately after a successful login.
+    // It supersedes any anonymous probe that was started when /login mounted.
+    if (force) this.sessionVersion += 1;
+    const version = this.sessionVersion;
+
+    let pending;
+    pending = (async () => {
       const asItems = (data) =>
         Array.isArray(data?.items) ? data.items : Array.isArray(data) ? data : [];
       try {
@@ -102,10 +113,25 @@ class AuthService {
         // three go out together rather than one waiting for the next. Only the
         // session can fail the guard; a missing principal list is tolerated.
         const [user, princData, clientPrincData] = await Promise.all([
-          api.get('/me'),
+          // Better Auth includes the user in a successful sign-in response.
+          // Reuse it rather than adding a redundant round trip before the
+          // workspace can open; keep /me as a compatibility fallback.
+          knownUser ? Promise.resolve(knownUser) : api.get('/me'),
           api.get('/me/principals').catch(() => null),
           api.get('/me/client-principals').catch(() => null),
         ]);
+
+        // A newer login/logout has already changed the session. Its state is
+        // authoritative, so this stale response must be ignored.
+        if (version !== this.sessionVersion) {
+          return {
+            authenticated: Boolean(this.user),
+            user: this.user,
+            principals: this.principals,
+            clientPrincipals: this.clientPrincipals,
+            activePrincipal: this.getActivePrincipal()
+          };
+        }
         this.user = user;
         this.principals = asItems(princData);
         this.clientPrincipals = asItems(clientPrincData);
@@ -132,6 +158,15 @@ class AuthService {
           activePrincipal: this.getActivePrincipal()
         };
       } catch (err) {
+        if (version !== this.sessionVersion) {
+          return {
+            authenticated: Boolean(this.user),
+            user: this.user,
+            principals: this.principals,
+            clientPrincipals: this.clientPrincipals,
+            activePrincipal: this.getActivePrincipal()
+          };
+        }
         this.clearSession();
         this.initialized = true;
         return {
@@ -142,11 +177,14 @@ class AuthService {
           activePrincipal: null
         };
       } finally {
-        this.initPromise = null;
+        // Do not let an older anonymous probe clear the promise for the
+        // newer post-login probe that superseded it.
+        if (this.initPromise === pending) this.initPromise = null;
       }
     })();
 
-    return this.initPromise;
+    this.initPromise = pending;
+    return pending;
   }
 
   async login(email, password) {
@@ -154,7 +192,7 @@ class AuthService {
     // The token that authorised this request was derived from the pre-login
     // session, so it must not survive into the signed-in one.
     clearCsrfToken();
-    await this.init(true);
+    await this.init(true, res?.user || null);
     return {
       res,
       user: this.user,
