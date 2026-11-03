@@ -1,5 +1,4 @@
 import React from 'react'
-import '././p404.css'
 import cssUrl from '././p404.css?url'
 import Doc from '../../../app/Doc.jsx'
 import { usePageStylesheet } from '../../../app/PageStylesheet.jsx'

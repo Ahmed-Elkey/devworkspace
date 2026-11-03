@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react'
-import './auth.css'
 import cssUrl from './auth.css?url'
 import { usePageStylesheet } from '../../app/PageStylesheet.jsx'
 import { useBoxEnhance, AuthStage } from './shared.jsx'
