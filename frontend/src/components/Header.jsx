@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export default function Header() {
+export default function Header({ activePath = '/' }) {
   const brandRef = useRef(null)
   const navRef = useRef(null)
 
@@ -145,10 +145,10 @@ export default function Header() {
           <div className="pill">
             <span className="lead" aria-hidden="true"><i /><i /><i /></span>
             <div className="fold"><ul>
-              <li><a href="/" aria-current="page">Product</a></li>
-              <li><a href="/how-it-works">How it works</a></li>
-              <li><a href="/about">Who I am</a></li>
-              <li><a href="/pricing">Pricing</a></li>
+              <li><a href="/" aria-current={activePath === '/' ? 'page' : undefined}>Product</a></li>
+              <li><a href="/how-it-works" aria-current={activePath === '/how-it-works' ? 'page' : undefined}>How it works</a></li>
+              <li><a href="/about" aria-current={activePath === '/about' ? 'page' : undefined}>Who I am</a></li>
+              <li><a href="/pricing" aria-current={activePath === '/pricing' ? 'page' : undefined}>Pricing</a></li>
             </ul></div>
             <a className="go" href="/login">View Demo<svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
           </div>
