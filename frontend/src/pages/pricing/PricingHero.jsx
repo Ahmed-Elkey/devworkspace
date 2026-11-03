@@ -48,7 +48,7 @@ export default function PricingHero() {
         <i className="fl f2" style={{ background: '#d9a07a' }}>S<s>free</s></i>
         <i className="fl f3" style={{ background: '#8c7cf6' }}>D<s>free</s></i>
         <div className="ticket">
-          <div className="tk-top"><small>Live</small><b>Demo</b><span>mode</span></div>
+          <div className="tk-top"><small>Live</small><b>Demo</b></div>
           <div className="tk-perf" />
           <ul className="tk-ls"><li><i>✓</i>No payment required</li><li><i>✓</i>All roles included</li><li><i>✓</i>Sample data ready</li></ul>
           <div className="tk-code" />
