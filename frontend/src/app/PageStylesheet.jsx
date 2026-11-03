@@ -48,17 +48,28 @@ function flush() {
   }
 }
 
+// The route shell shows its own neutral loading state. Keeping an inactive
+// stylesheet alive while the incoming one downloads therefore buys us
+// nothing, but it does allow two pages' global selectors to fight briefly.
+// Remove inactive route styles immediately before mounting the next route.
+function discardInactiveStyles(exceptHref) {
+  for (const [href, entry] of [...LINKS]) {
+    if (href === exceptHref || entry.count > 0) continue
+    if (entry.timer) clearTimeout(entry.timer)
+    entry.link.remove()
+    LINKS.delete(href)
+  }
+}
+
 export function usePageStylesheet(href) {
   useLayoutEffect(() => {
     if (!href) return undefined
 
     let entry = LINKS.get(href)
     if (!entry) {
-      // Vite preloads a normal CSS import before resolving a lazy page
-      // module. Reuse that link when it is available: the route then paints
-      // styled on its first visit instead of waiting for a second request
-      // started from this hook. Subsequent visits create a fresh link after
-      // the old route has released its stylesheet.
+      discardInactiveStyles(href)
+      // Reuse a matching existing link on a direct entry when the browser has
+      // one; otherwise this hook owns the route's only stylesheet link.
       const link = existingStylesheet(href) || document.createElement('link')
       const alreadyLoaded = Boolean(link.sheet)
       if (!alreadyLoaded) {
