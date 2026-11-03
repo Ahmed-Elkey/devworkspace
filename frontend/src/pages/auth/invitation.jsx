@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { createRoot } from 'react-dom/client'
 import './auth.css'
 import { useBoxEnhance, AuthStage } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
@@ -138,4 +137,4 @@ function InvitationApp() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<InvitationApp />)
+export default InvitationApp

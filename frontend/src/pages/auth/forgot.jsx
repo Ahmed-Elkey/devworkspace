@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import { createRoot } from 'react-dom/client'
 import './auth.css'
 import { useBoxEnhance, AuthStage, busy } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
@@ -53,4 +52,4 @@ function ForgotApp() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<ForgotApp />)
+export default ForgotApp

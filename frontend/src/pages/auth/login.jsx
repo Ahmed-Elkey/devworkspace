@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { createRoot } from 'react-dom/client'
 import './login.css'
 import { useBoxEnhance, AuthStage, busy } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
 import { DEMO_ACCOUNTS, DEMO_PASSWORD } from '../../demo/accounts.js'
+import { navigate } from '../../app/navigate.js'
 
 function LoginApp() {
   const boxRef = useRef(null)
@@ -57,11 +57,11 @@ function LoginApp() {
       if (!active || !session.authenticated) return
       const returnTo = params.get('returnTo')
       if (session.principals && session.principals.length > 0) {
-        window.location.href = returnTo || '/workspace/dashboard'
+        navigate(returnTo || '/workspace/dashboard')
       } else if (session.clientPrincipals && session.clientPrincipals.length > 0) {
-        window.location.href = returnTo || '/portal/portal-projects'
+        navigate(returnTo || '/portal/portal-projects')
       } else {
-        window.location.href = '/onboarding'
+        navigate('/onboarding')
       }
     }).catch(() => {})
     return () => { active = false }
@@ -96,11 +96,11 @@ function LoginApp() {
       const returnTo = params.get('returnTo')
 
       if ((!principals || principals.length === 0) && (!clientPrincipals || clientPrincipals.length === 0)) {
-        window.location.href = '/onboarding'
+        navigate('/onboarding')
       } else if (!principals || principals.length === 0) {
-        window.location.href = returnTo || '/portal/portal-projects'
+        navigate(returnTo || '/portal/portal-projects')
       } else {
-        window.location.href = returnTo || '/workspace/dashboard'
+        navigate(returnTo || '/workspace/dashboard')
       }
     } catch (err) {
       btn.disabled = false
@@ -158,4 +158,4 @@ function LoginApp() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<LoginApp />)
+export default LoginApp

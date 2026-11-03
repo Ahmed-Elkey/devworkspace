@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { createRoot } from 'react-dom/client'
 import './auth.css'
 import { useBoxEnhance, AuthStage } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
@@ -83,4 +82,4 @@ function ResetApp() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<ResetApp />)
+export default ResetApp

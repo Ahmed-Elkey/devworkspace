@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { createRoot } from 'react-dom/client'
 import './auth.css'
 import { useBoxEnhance, AuthStage } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
@@ -136,4 +135,4 @@ function RegisterApp() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<RegisterApp />)
+export default RegisterApp

@@ -1,4 +1,5 @@
 import { api, registerPrincipalProvider, clearCsrfToken } from './api.js';
+import { navigate } from '../app/navigate.js';
 
 const STORAGE_KEY_PRINCIPAL = 'devworkspace_active_principal_id';
 const STORAGE_KEY_ORG = 'devworkspace_active_org_id';
@@ -172,7 +173,9 @@ class AuthService {
       await api.post('/identity/logout', {});
     } catch (_) {}
     this.clearSession();
-    window.location.href = '/login';
+    // Same-document move: the SPA shell is already running, so /login mounts
+    // instantly instead of bouncing the whole document.
+    navigate('/login');
   }
 
   async verifyEmail(token) {

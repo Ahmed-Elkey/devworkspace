@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { createRoot } from 'react-dom/client'
 import './auth.css'
 import { useBoxEnhance, AuthStage, busy } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
+import { navigate } from '../../app/navigate.js'
 
 function OnboardingApp() {
   const boxRef = useRef(null)
@@ -17,15 +17,15 @@ function OnboardingApp() {
     auth.init().then((session) => {
       if (!active) return
       if (!session.authenticated) {
-        window.location.href = '/login?returnTo=/onboarding'
+        navigate('/login?returnTo=/onboarding')
         return
       }
       // If user already has an organization, go to dashboard
       if (session.principals && session.principals.length > 0) {
-        window.location.href = '/workspace/dashboard'
+        navigate('/workspace/dashboard')
       }
     }).catch(() => {
-      window.location.href = '/login?returnTo=/onboarding'
+      navigate('/login?returnTo=/onboarding')
     })
     return () => { active = false }
   }, [])
@@ -58,7 +58,7 @@ function OnboardingApp() {
           sessionStorage.setItem('__dw_prefill_email', email)
         } catch (_) {}
       }
-      window.location.href = '/login?notice=org_created'
+      navigate('/login?notice=org_created')
     } catch (err) {
       btn.disabled = false
       btn.textContent = origText
@@ -85,4 +85,4 @@ function OnboardingApp() {
   )
 }
 
-createRoot(document.getElementById('root')).render(<OnboardingApp />)
+export default OnboardingApp

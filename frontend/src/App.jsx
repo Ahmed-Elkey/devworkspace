@@ -1,4 +1,9 @@
 import { useEffect, useRef } from 'react'
+// Landing page stylesheet ONLY. Not imported by the shell: design-system.css's
+// generic tokens/rules would override the landing's original design (slate
+// colors instead of #111/#232323, light pill instead of the dark nav pill),
+// and other routes must not inherit it either.
+import './styles/base.css'
 import Sprite from './components/Sprite.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'

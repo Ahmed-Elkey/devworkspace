@@ -2,6 +2,8 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { api, esc } from '../lib/api.js'
 import { auth } from '../lib/auth.js'
 import * as helpers from '../lib/helpers.js'
+import { runPageScripts } from './ClassicScripts.js'
+import { navigate } from './navigate.js'
 // The shared stylesheet is deliberately NOT imported here. Every page stylesheet
 // already inlines it first, so a second copy would be emitted as its own chunk and
 // can be linked *after* the page's styles, overriding that section's design.
@@ -24,7 +26,8 @@ if (typeof window !== 'undefined') {
  * same order and global semantics as the source page's end-of-body code.
  *
  * Strict Route Guard resolves BEFORE any markup or scripts are injected,
- * preventing any flash of protected content.
+ * preventing any flash of protected content. Guards and session redirects
+ * move through the SPA bridge (no document reload).
  */
 export default function Doc({ body, scripts = [] }) {
   const [authorized, setAuthorized] = useState(false)
@@ -50,19 +53,19 @@ export default function Doc({ body, scripts = [] }) {
 
         if (!session.authenticated) {
           const returnTo = encodeURIComponent(window.location.pathname + window.location.search)
-          window.location.href = `/login?returnTo=${returnTo}&notice=session_ended`
+          navigate(`/login?returnTo=${returnTo}&notice=session_ended`)
           return
         }
 
         if (isWorkspace && (!session.principals || session.principals.length === 0)) {
-          window.location.href = '/onboarding'
+          navigate('/onboarding')
           return
         }
 
         if (isPortal && (!session.clientPrincipals || session.clientPrincipals.length === 0)) {
           // If the user has workspace access but no client access, redirect to workspace
           if (session.principals && session.principals.length > 0) {
-            window.location.href = '/workspace/dashboard'
+            navigate('/workspace/dashboard')
             return
           }
         }
@@ -71,7 +74,7 @@ export default function Doc({ body, scripts = [] }) {
       } catch (err) {
         if (active) {
           const returnTo = encodeURIComponent(window.location.pathname + window.location.search)
-          window.location.href = `/login?returnTo=${returnTo}&notice=session_ended`
+          navigate(`/login?returnTo=${returnTo}&notice=session_ended`)
         }
       }
     }
@@ -156,17 +159,21 @@ export default function Doc({ body, scripts = [] }) {
       })
     }
 
-    for (const code of scripts.flat()) {
-      const el = document.createElement('script')
-      el.textContent = code
-      host.appendChild(el)
-    }
+    // Classic scripts, wrapped so they behave the way they did inside a whole
+    // document: DOMContentLoaded handlers fire once (they never would after a
+    // SPA hop), and every document/window listener comes back as a disposer.
+    const batch = runPageScripts(scripts.flat(), host)
 
     /* Native fragment scroll ran before React committed; the original
        pages had static markup, so re-run it here for parity. */
     if (location.hash.length > 1) {
       const t = document.getElementById(decodeURIComponent(location.hash.slice(1)))
       if (t) t.scrollIntoView()
+    }
+
+    return () => {
+      batch.dispose()
+      delete window.__DW_PROJECT_ID__
     }
   }, [authorized, body, scripts])
 
