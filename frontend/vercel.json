@@ -8,6 +8,9 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works.html" },
+    { "source": "/demo-guide", "destination": "/demo-guide.html" },
     { "source": "/login", "destination": "/login.html" },
     { "source": "/register", "destination": "/register.html" },
     { "source": "/forgot-password", "destination": "/forgot-password.html" },

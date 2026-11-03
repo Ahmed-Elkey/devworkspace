@@ -23,6 +23,9 @@ import { lazy } from 'react'
 export const ROUTES = [
   { path: '/', title: 'Devworkspace – Plan projects on one timeline', component: lazy(() => import('../App.jsx')) },
   { path: '/pricing', title: 'Devworkspace Pricing – Pay for planners, guests are free', component: lazy(() => import('../pages/pricing/main.jsx')) },
+  { path: '/about', title: 'About the creator – Devworkspace portfolio', component: lazy(() => import('../pages/portfolio/main.jsx')) },
+  { path: '/how-it-works', title: 'How the demo works – Devworkspace portfolio', component: lazy(() => import('../pages/portfolio/main.jsx')) },
+  { path: '/demo-guide', title: 'Demo guide – Devworkspace portfolio', component: lazy(() => import('../pages/portfolio/main.jsx')) },
   { path: '/login', title: 'Sign in – Devworkspace', component: lazy(() => import('../pages/auth/login.jsx')) },
   { path: '/register', title: 'Create account – Devworkspace', component: lazy(() => import('../pages/auth/register.jsx')) },
   { path: '/forgot-password', title: 'Forgot password – Devworkspace', component: lazy(() => import('../pages/auth/forgot.jsx')) },

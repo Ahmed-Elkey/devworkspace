@@ -64,6 +64,9 @@ export default defineConfig({
       input: {
         'main': fileURLToPath(new URL('./index.html', import.meta.url)),
         'pricing': fileURLToPath(new URL('./pricing.html', import.meta.url)),
+        'about': fileURLToPath(new URL('./about.html', import.meta.url)),
+        'how-it-works': fileURLToPath(new URL('./how-it-works.html', import.meta.url)),
+        'demo-guide': fileURLToPath(new URL('./demo-guide.html', import.meta.url)),
         'login': fileURLToPath(new URL('./login.html', import.meta.url)),
         'register': fileURLToPath(new URL('./register.html', import.meta.url)),
         'forgot-password': fileURLToPath(new URL('./forgot-password.html', import.meta.url)),
