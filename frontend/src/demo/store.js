@@ -14,6 +14,53 @@ const now = () => new Date().toISOString()
 const slugFor = (email) => String(email).replace(/[^a-z0-9]+/gi, '-').toLowerCase()
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
+// A few project collections were absent when the original recordings were
+// captured. A frontend-only demo must never expose a half-empty product just
+// because a source endpoint happened to be unavailable at capture time. These
+// records complete the Files, Deliverables and Documents flows for every
+// internal demo role; they are copied into the same in-tab store as recorded
+// data, so changes still behave like the rest of the demo.
+const DEMO_COLLECTIONS = {
+  folders: [
+    { id: 'e4214ae3-7c46-4db4-a268-2ad0636f8ee1', name: 'Brand assets', position: 1, revision: 1 },
+    { id: 'a96c75ce-7b96-4998-a904-27cae8ad713f', name: 'Client feedback', position: 2, revision: 1 },
+  ],
+  files: [
+    { id: 'fe1d9c19-a1d8-42e4-8adb-bbc5fd530181', title: 'Storefront-home-v4.fig', folder_id: 'e4214ae3-7c46-4db4-a268-2ad0636f8ee1', byte_size: 2480000, version_number: 4, attachment_count: 3, asset_id: 'asset-storefront-v4', revision: 1 },
+    { id: '15f64df4-24eb-40ea-b5b5-a2c953374010', title: 'Launch-messaging.pdf', folder_id: 'root', byte_size: 834000, version_number: 2, attachment_count: 1, asset_id: 'asset-launch-message', revision: 1 },
+    { id: '4d5b12df-f7ee-4edb-a703-830b5d143e73', title: 'Product-shots.zip', folder_id: 'e4214ae3-7c46-4db4-a268-2ad0636f8ee1', byte_size: 12400000, version_number: 1, attachment_count: 0, asset_id: 'asset-product-shots', revision: 1 },
+  ],
+  deliverables: [
+    { id: '7651484b-bbbf-440a-9389-1c38a8d1d95a', title: 'Storefront launch design', task_id: null, revision: 1 },
+    { id: '0b748e4f-3adc-442e-9d5f-42a3498d3521', title: 'Campaign messaging pack', task_id: null, revision: 1 },
+  ],
+  versions: [
+    { id: '604de7b2-54e0-422d-a71a-4bdf895d74f0', deliverable_id: '7651484b-bbbf-440a-9389-1c38a8d1d95a', version_number: 3, creator_name: 'Demo Showcase', created_at: '2026-10-28T09:30:00.000Z', share_status: 'ACTIVE', review_status: 'OPEN', revision: 1, share_revision: 1, digest: 'demo-storefront-v3' },
+    { id: 'ee543491-e6f4-4ec4-af5e-213e4d1a7e2e', deliverable_id: '0b748e4f-3adc-442e-9d5f-42a3498d3521', version_number: 2, creator_name: 'Alex Morgan', created_at: '2026-10-30T14:15:00.000Z', share_status: 'ACTIVE', review_status: 'CLOSED', revision: 1, share_revision: 1, digest: 'demo-messaging-v2' },
+  ],
+  documents: [
+    { id: 'c3e854d3-6e29-49ea-8606-cb3614e0b280', title: 'Storefront launch brief', summary: 'Goals, audience and launch milestones.', updated_at: '2026-10-31T10:00:00.000Z', revision: 1 },
+    { id: 'ec8f922b-5070-4c5a-937b-213467cd7f15', title: 'Creative review notes', summary: 'Open decisions from the latest stakeholder review.', updated_at: '2026-10-30T16:20:00.000Z', revision: 1 },
+  ],
+}
+
+function collectionFor(pathname) {
+  const match = /\/projects\/[^/]+\/(folders|files|deliverables|versions|documents)$/.exec(pathname)
+  return match ? match[1] : null
+}
+
+function demoCollection(pathname, params) {
+  const collection = collectionFor(pathname)
+  if (!collection) return null
+  let items = structuredClone(DEMO_COLLECTIONS[collection] || [])
+  if (collection === 'files') {
+    const folder = params.get('folder_id')
+    if (folder && folder !== 'root') items = items.filter((item) => item.folder_id === folder)
+    if (folder === 'root') items = items.filter((item) => item.folder_id === 'root')
+  }
+  return { status: 200, body: { items, total: items.length, nextCursor: null } }
+}
+
 export function signedInAs() {
   try {
     return sessionStorage.getItem(ACCOUNT_KEY)
@@ -132,10 +179,14 @@ function matches(row, params) {
 export function read(key) {
   const recordings = current?.recordings
   if (!recordings) return { status: 401, body: problem('SESSION_REQUIRED', 401) }
-  const exact = recordings['GET ' + key]
-  if (exact) return exact
-
   const { pathname, params } = splitKey(key)
+  const fallback = demoCollection(pathname, params)
+  const exact = recordings['GET ' + key]
+  // Prefer the real recording when it contains rows; replace only known
+  // capture-time 404s with complete demo collections.
+  if (exact && (exact.status < 400 || !fallback)) return exact
+  if (fallback) return fallback
+
   const variants = reads(recordings).filter((item) => item.pathname === pathname)
   if (!variants.length) {
     // An id-shaped path is a single thing that is genuinely absent; anything else
