@@ -28,12 +28,12 @@ export default function FinalCta() {
   return (
     <div className="final rv">
       <h2>Ready to get <span className="un">organized?</span></h2>
-      <p>Explore the interactive portfolio demo with ready-made projects and roles.</p>
+      <p>Explore the interactive product demo with ready-made projects and roles.</p>
       <a className="cta" href="/login">Explore Demo
         <svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
       </a>
       <div className="fz" aria-hidden="true" title="Click to replay" ref={fzRef}>
-        <em className="fz-lb">Portfolio demo</em>
+        <em className="fz-lb">Product demo</em>
         <div className="fz-days">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(n => n === 1 ? <span className="d1" key={n}>1</span> : <span key={n}>{n}</span>)}
         </div>
