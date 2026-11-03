@@ -1,12 +1,11 @@
-// Each route has its own HTML entry point and deliberately performs a normal
-// document navigation. Several screens ship their own global CSS and legacy
-// interaction scripts; keeping a single React document caused those effects
-// to overlap during a client-side transition, producing flashes and occasional
-// broken layouts. A fresh document gives every page a clean, reliable start.
+// A single React shell keeps navigation instant. Route components unmount on
+// every path change and own their cleanup, while the page stylesheet manager
+// keeps the outgoing design visible until the next one is ready.
 
-import React, { Suspense, useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import React, { Suspense, startTransition, useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES, ROUTE_TITLES } from './routes.jsx'
+import { setNavigator } from './navigate.js'
 import ErrorBoundary from './ErrorBoundary.jsx'
 
 // Nothing matched an internal link: keep the URL honest and show the designed
@@ -16,6 +15,12 @@ const BOOT_SHELL = '/src/app/main.jsx'
 
 function Inner() {
   const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    setNavigator((to, replace) => startTransition(() => navigate(to, { replace })))
+    return () => setNavigator(null)
+  }, [navigate])
 
   // Keep the document title in step with the route. The served document's own
   // <head> still wins on cold loads, so this only ever needs to run after a
@@ -80,9 +85,43 @@ function RouteScope({ Cmp }) {
   return <Cmp key={location.pathname + location.search} />
 }
 
+// Intercept only ordinary same-origin page links. This preserves open-in-new-
+// tab, downloads and external URLs, while avoiding a full browser reload for
+// normal product navigation.
+function LinkInterceptor() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const onClick = (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+      const anchor = event.target?.closest?.('a[href]')
+      if (!anchor || (anchor.target && anchor.target !== '_self') || anchor.hasAttribute('download')) return
+      const href = anchor.getAttribute('href')
+      if (!href || href.startsWith('#')) return
+      let url
+      try { url = new URL(href, window.location.href) } catch { return }
+      if (url.origin !== window.location.origin || url.protocol === 'mailto:' || url.protocol === 'tel:') return
+      let path = url.pathname
+      if (/^\/(api|dw-staging|socket\.io)\b/.test(path)) return
+      if (!ROUTE_TITLES.has(path)) {
+        const htmlPath = path.endsWith('.html') ? path.slice(0, -5) : null
+        if (htmlPath && ROUTE_TITLES.has(htmlPath)) path = htmlPath
+        else return
+      }
+      const next = path + url.search + url.hash
+      if (next === window.location.pathname + window.location.search + window.location.hash) return
+      event.preventDefault()
+      startTransition(() => navigate(next))
+    }
+    document.addEventListener('click', onClick, true)
+    return () => document.removeEventListener('click', onClick, true)
+  }, [navigate])
+  return null
+}
+
 export default function AppRouter() {
   return (
     <BrowserRouter>
+      <LinkInterceptor />
       <Inner />
     </BrowserRouter>
   )
