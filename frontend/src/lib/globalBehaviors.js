@@ -6,16 +6,18 @@ export function useRevealObservers() {
   useEffect(() => {
     /* Reveal on scroll, staggered inside each group (original script #1 tail) */
     const els = [].slice.call(document.querySelectorAll('.rv'))
-    const io = new IntersectionObserver(function (es) {
+    const canObserve = 'IntersectionObserver' in window
+    const io = canObserve ? new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) }
       })
-    }, { threshold: .15 })
+    }, { threshold: .15 }) : null
     els.forEach(function (el) {
       const sibs = el.parentElement.querySelectorAll(':scope > .rv')
       const i = Array.prototype.indexOf.call(sibs, el)
       el.style.setProperty('--d', (i * .09) + 's')
-      io.observe(el)
+      if (io) io.observe(el)
+      else el.classList.add('in')
     })
 
     /* Stagger + reveal feature items and quote (original script #6 tail) */
@@ -32,7 +34,7 @@ export function useRevealObservers() {
       tg.forEach(function (e) { io2.observe(e) })
     } else tg.forEach(show)
 
-    return () => { io.disconnect(); if (io2) io2.disconnect() }
+    return () => { if (io) io.disconnect(); if (io2) io2.disconnect() }
   }, [])
 }
 

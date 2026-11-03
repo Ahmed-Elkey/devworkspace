@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export default function Header({ activePath = '/' }) {
+export default function Header() {
   const brandRef = useRef(null)
   const navRef = useRef(null)
 
@@ -76,9 +76,11 @@ export default function Header({ activePath = '/' }) {
       // applied immediately after this effect. Observing the list catches
       // that layout change and prevents the indicator from keeping a position
       // measured against the browser's unstyled default list padding.
-      const listResizeObserver = new ResizeObserver(onResizeInd)
-      listResizeObserver.observe(ul)
-      links.forEach((link) => listResizeObserver.observe(link))
+      const listResizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(onResizeInd) : null
+      if (listResizeObserver) {
+        listResizeObserver.observe(ul)
+        links.forEach((link) => listResizeObserver.observe(link))
+      }
       // The stylesheet is preloaded with the lazy route, but browsers may
       // commit it one frame after React mounts. A short follow-up covers that
       // commit (and late web-font metrics) without relying on a fixed offset.
@@ -89,7 +91,7 @@ export default function Header({ activePath = '/' }) {
       m01.observe(nav, { attributes: true, attributeFilter: ['data-state'] })
       cleanups.push(() => {
         window.removeEventListener('resize', onResizeInd)
-        listResizeObserver.disconnect()
+        if (listResizeObserver) listResizeObserver.disconnect()
         cancelAnimationFrame(alignmentFrame)
         clearTimeout(alignmentTimer)
         clearTimeout(fontMetricTimer)
@@ -145,10 +147,8 @@ export default function Header({ activePath = '/' }) {
           <div className="pill">
             <span className="lead" aria-hidden="true"><i /><i /><i /></span>
             <div className="fold"><ul>
-              <li><a href="/" aria-current={activePath === '/' ? 'page' : undefined}>Product</a></li>
-              <li><a href="/how-it-works" aria-current={activePath === '/how-it-works' ? 'page' : undefined}>How it works</a></li>
-              <li><a href="/about" aria-current={activePath === '/about' ? 'page' : undefined}>Who I am</a></li>
-              <li><a href="/pricing" aria-current={activePath === '/pricing' ? 'page' : undefined}>Pricing</a></li>
+              <li><a href="/" aria-current="page">Product</a></li>
+              <li><a href="/pricing">Pricing</a></li>
             </ul></div>
             <a className="go" href="/login">View Demo<svg viewBox="0 0 18 15" fill="none" aria-hidden="true"><path d="M1 7.5h16m0 0L10.6 1.1M17 7.5l-6.4 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
           </div>
