@@ -1,9 +1,13 @@
 import { useEffect, useRef } from 'react'
-// Landing page stylesheet ONLY. Not imported by the shell: design-system.css's
-// generic tokens/rules would override the landing's original design (slate
-// colors instead of #111/#232323, light pill instead of the dark nav pill),
-// and other routes must not inherit it either.
-import './styles/base.css'
+// Landing page's own stylesheet, scoped to this route like every other page.
+// It is NOT part of the shell bundle, and it is NOT imported app-wide: its
+// generic rules (:root, body, .btn, timeline class names) previously stayed
+// loaded while other routes were on screen and overrode their designs —
+// navigate / → /login and the auth page came out washed out. ?url keeps the
+// 286KB sheet out of the JS; the <link> mounts with this route and unmounts
+// when it leaves (pageStylesheet below).
+import baseCssUrl from './styles/base.css?url'
+import { usePageStylesheet } from './app/PageStylesheet.jsx'
 import Sprite from './components/Sprite.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
@@ -20,6 +24,9 @@ import { useRevealObservers, useCardInteractions } from './lib/globalBehaviors.j
 
 export default function App() {
   const progressRef = useRef(null)
+
+  // The landing's own stylesheet active only while this route is mounted.
+  usePageStylesheet(baseCssUrl)
 
   useRevealObservers()
   useCardInteractions()

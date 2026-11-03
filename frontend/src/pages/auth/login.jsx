@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
-import './login.css'
+import cssUrl from './login.css?url'
+import { usePageStylesheet } from '../../app/PageStylesheet.jsx'
 import { useBoxEnhance, AuthStage, busy } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
 import { DEMO_ACCOUNTS, DEMO_PASSWORD } from '../../demo/accounts.js'
@@ -158,4 +159,9 @@ function LoginApp() {
   )
 }
 
-export default LoginApp
+// The stylesheet rides on the route mount, not on the module import, so it
+// leaves when the page does.
+export default function LoginAppPage() {
+  usePageStylesheet(cssUrl)
+  return <LoginApp />
+}

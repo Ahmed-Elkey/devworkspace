@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
-import './auth.css'
+import cssUrl from './auth.css?url'
+import { usePageStylesheet } from '../../app/PageStylesheet.jsx'
 import { useBoxEnhance, AuthStage, busy } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
 
@@ -52,4 +53,9 @@ function ForgotApp() {
   )
 }
 
-export default ForgotApp
+// The stylesheet rides on the route mount, not on the module import, so it
+// leaves when the page does.
+export default function ForgotAppPage() {
+  usePageStylesheet(cssUrl)
+  return <ForgotApp />
+}

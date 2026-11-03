@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react'
-import './auth.css'
+import cssUrl from './auth.css?url'
+import { usePageStylesheet } from '../../app/PageStylesheet.jsx'
 import { useBoxEnhance, AuthStage } from './shared.jsx'
 import { auth } from '../../lib/auth.js'
 
@@ -137,4 +138,9 @@ function InvitationApp() {
   )
 }
 
-export default InvitationApp
+// The stylesheet rides on the route mount, not on the module import, so it
+// leaves when the page does.
+export default function InvitationAppPage() {
+  usePageStylesheet(cssUrl)
+  return <InvitationApp />
+}
